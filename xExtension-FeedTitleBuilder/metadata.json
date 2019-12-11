@@ -1,0 +1,8 @@
+{
+	"name": "FeedTitleBuilder",
+	"author": "CNTools | Clemens Neubauer",
+	"description": "Build your own feed title based on url, days date and original feed title",
+	"version": 0.1,
+	"entrypoint": "FeedTitleBuilder",
+	"type": "user"
+}

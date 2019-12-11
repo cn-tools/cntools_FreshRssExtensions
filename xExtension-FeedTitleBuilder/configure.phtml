@@ -1,0 +1,50 @@
+<form action="<?php echo _url('extension', 'configure', 'e', urlencode($this->getName())); ?>" method="post">
+	<input type="hidden" name="_csrf" value="<?php echo FreshRSS_Auth::csrfToken(); ?>" />
+	<div class="form-group">
+		<label class="group-name" for="feedtitlebuilder_template"><?php echo _t('ext.FeedTitleBuilder.label4Template'); ?></label>
+		<div class="group-controls">
+			<input type="text" name="feedtitlebuilder_template" id="feedtitlebuilder_template" value="<?php echo FreshRSS_Context::$user_conf->feedtitlebuilder_template; ?>">
+		</div>
+		<div class="group-controls">
+			<h3><?php echo _t('ext.FeedTitleBuilder.helping'); ?></h3>
+			<ul>
+				<li><strong>{origtitle}:</strong> <?php echo _t('ext.FeedTitleBuilder.help4origtitle'); ?></li>
+				<li><strong>{date}format{/date}:</strong> <?php echo _t('ext.FeedTitleBuilder.help4date'); ?></li>
+				<li><strong>{url}value{/url}:</strong> <?php echo _t('ext.FeedTitleBuilder.help4phpparseurl'); ?><br /><?php echo _t('ext.FeedTitleBuilder.help4phpparseurlvalues'); ?>
+					<ol>
+						<li><strong>schema:</strong> <?php echo _t('ext.FeedTitleBuilder.help4phpparseurlschema'); ?></li>
+						<li><strong>host:</strong> <?php echo _t('ext.FeedTitleBuilder.help4phpparseurlhost'); ?></li>
+						<li><strong>port:</strong> <?php echo _t('ext.FeedTitleBuilder.help4phpparseurlport'); ?></li>
+						<li><strong>user:</strong> <?php echo _t('ext.FeedTitleBuilder.help4phpparseurluser'); ?></li>
+						<li><strong>pass:</strong> <?php echo _t('ext.FeedTitleBuilder.help4phpparseurlpass'); ?></li>
+						<li><strong>path:</strong> <?php echo _t('ext.FeedTitleBuilder.help4phpparseurlpath'); ?></li>
+						<li><strong>query:</strong> <?php echo _t('ext.FeedTitleBuilder.help4phpparseurlquery'); ?></li>
+						<li><strong>fragment:</strong> <?php echo _t('ext.FeedTitleBuilder.help4phpparseurlfragment'); ?></li>
+					</ol>
+					<br /><?php echo _t('ext.FeedTitleBuilder.help4phpparseurlhostspecial'); ?>
+					<ol>
+						<li><strong>hostsub:</strong> <?php echo _t('ext.FeedTitleBuilder.help4phpparseurlhostsub'); ?></li>
+						<li><strong>hostname:</strong> <?php echo _t('ext.FeedTitleBuilder.help4phpparseurlhostname'); ?></li>
+						<li><strong>hosttld:</strong> <?php echo _t('ext.FeedTitleBuilder.help4phpparseurlhosttld'); ?></li>
+					</ol>
+				</li>
+			</ul>
+			<h3><?php echo _t('ext.FeedTitleBuilder.example'); ?></h3>
+			<?php echo _t('ext.FeedTitleBuilder.example_template_code'); ?> <code>{url}hostname{/url}.{url}hosttld{/url} - {origtitle} (added {date}Ymd{/date})</code>
+			<br />
+			<?php echo _t('ext.FeedTitleBuilder.example_url'); ?> <code>https://www.github.com/FreshRSS/FreshRSS/releases.atom</code>
+			<br />
+			<?php echo _t('ext.FeedTitleBuilder.example_title'); ?> <code>github.com - Release notes from FreshRSS (added 20190410)</code>
+			<br />
+			<h3><?php echo _t('ext.FeedTitleBuilder.info'); ?></h3>
+			<?php echo _t('ext.FeedTitleBuilder.infodesc'); ?>
+		</div>
+	</div>
+
+	<div class="form-group form-actions">
+		<div class="group-controls">
+			<button type="submit" class="btn btn-important"><?php echo _t('gen.action.submit'); ?></button>
+			<button type="reset" class="btn"><?php echo _t('gen.action.cancel'); ?></button>
+		</div>
+	</div>
+</form>
