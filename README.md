@@ -3,6 +3,7 @@ This repository contains my unofficial FreshRSS extensions.
 
 ## FreshRSS YouTubeChannel2RssFeed
 Transfer on the fly a YouTube-Channel into an RSS Feed
+Required FreshRSS version at least v1.16
 
 ## FreshRSS FeedTitleBuilder
 Build your own feed title based on url, days date and original feed title

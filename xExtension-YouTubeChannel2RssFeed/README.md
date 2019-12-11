@@ -1,5 +1,6 @@
 # FreshRSS YouTubeChannel2RssFeed
 Transfer on the fly a YouTube-Channel into an RSS Feed
+Required FreshRSS version at least v1.16
 
 # Installation
 
