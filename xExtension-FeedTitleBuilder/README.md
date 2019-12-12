@@ -1,6 +1,51 @@
 # FreshRSS FeedTitleBuilder
 Build your own feed title based on url, days date and original feed title
 
+# Documentation
+
+You can use some special words to design your preferred title as you like.
+
+## Available special words
+
+| Word | Description |
+| :---: | :--- |
+| {origtitle} | Use it for the original title of the feed you will add |
+| {date}value{/date} | Design a formatted date string as you like |
+| {url}value{/url} | Access to some text sections of the full url of the feed |
+
+### Date
+
+The code use the function 'date' of 'php'. So there are all characters available which this function can use.
+Have a look for details: [PHP Date](https://www.php.net/manual/en/function.date.php)
+
+### URL
+
+The code use the function 'parse_url' of 'php'. Therefore you can use all words which are documented for it. Note that depending on the PHP version you are using, it may give different keywords.
+Have a look for details: [PHP parse_url](https://www.php.net/manual/en/function.parse-url.php)
+
+**Probably the most needed words:**
+
+| Word | Description |
+| :---: | :--- |
+| schema | You will get \'http\', \'https\', \'ftp\' or each other. Ex. \'https\'. |
+| host | You will get your domain name including the TLD and if available \'www\'. |
+| query | You will get the text between \'?\' and \'#\'. |
+| fragment | You will get the text after \'#\'. |
+
+**Additional special words by CN-Tools**
+
+Maybe the word 'host' provides to much, so i offer the following extra words:
+
+| Word | Description |
+| :---: | :--- |
+| hostsub | You will get the full text before the penultimate dot. |
+| hostname | You will get the text between the penultimate and last dot. |
+| hosttld | You will get the text after the last dot. |
+
+## Example
+
+{url}hostname{/url}.{url}hosttld{/url} - {origtitle} (added {date}Ymd{/date})
+
 # Installation
 
 To install an extension, download the extension archive first and extract it on your PC. 
