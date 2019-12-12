@@ -3,7 +3,8 @@ Build your own feed title based on url, days date and original feed title
 
 # Documentation
 
-You can use some special words to design your preferred title as you like.
+This add on for FreshRSS change the title of the rss feed. It is working in the adding process only. After that process this add on have no effect.
+To design your preferred title as you like use the available special words.
 
 ## Available special words
 
