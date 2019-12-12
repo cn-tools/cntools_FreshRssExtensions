@@ -3,7 +3,7 @@ Build your own feed title based on url, days date and original feed title
 
 # Documentation
 
-This add on for FreshRSS change the title of the rss feed. It is working in the adding process only. After that process this add on have no effect.
+This add on for FreshRSS change the title of the rss feed. It is working in the adding process only. After that process this add on have no effect.\
 To design your preferred title as you like use the available special words.
 
 ## Available special words
@@ -16,12 +16,12 @@ To design your preferred title as you like use the available special words.
 
 ### Date
 
-The code use the function 'date' of 'php'. So there are all characters available which this function can use.
+The code use the function 'date' of 'php'. So there are all characters available which this function can use.\
 Have a look for details: [PHP Date](https://www.php.net/manual/en/function.date.php)
 
 ### URL
 
-The code use the function 'parse_url' of 'php'. Therefore you can use all words which are documented for it. Note that depending on the PHP version you are using, it may give different keywords.
+The code use the function 'parse_url' of 'php'. Therefore you can use all words which are documented for it. Note that depending on the PHP version you are using, it may give different keywords.\
 Have a look for details: [PHP parse_url](https://www.php.net/manual/en/function.parse-url.php)
 
 **Probably the most needed words:**
@@ -49,7 +49,7 @@ Maybe the word 'host' provides to much, so i offer the following extra words:
 
 # Installation
 
-To install an extension, download the extension archive first and extract it on your PC. 
-Then, upload the specific extension(s) you want on your server. 
+To install an extension, download the extension archive first and extract it on your PC.\
+Then, upload the specific extension(s) you want on your server.
 
 Extensions must be in the ./extensions directory of your FreshRSS installation.
