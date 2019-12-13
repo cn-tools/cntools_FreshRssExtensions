@@ -20,7 +20,7 @@ class FeedTitleBuilderExtension extends Minz_Extension {
 
 	public static function CntBuildTitle($feed) {
 		if (is_object($feed) === true) {
-			$lWorkTitle = FreshRSS_Context::$user_conf->feedtitlebuilder_template;
+			$lWorkTitle = FreshRSS_Context::$user_conf->feedtitlebuilder["template"];
 			if ($lWorkTitle == '') {
 				// do nothing
 			} else {
