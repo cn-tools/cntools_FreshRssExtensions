@@ -11,7 +11,9 @@ class FeedTitleBuilderExtension extends Minz_Extension {
 		$this->registerTranslates();
 
 		if (Minz_Request::isPost()) {
-			FreshRSS_Context::$user_conf->feedtitlebuilder_template = Minz_Request::param('feedtitlebuilder_template', '');
+			$data = array();
+			$data['template'] = Minz_Request::param('feedtitlebuilder_template', '');
+			FreshRSS_Context::$user_conf->feedtitlebuilder = $data;
 			FreshRSS_Context::$user_conf->save();
 		}
 	}
