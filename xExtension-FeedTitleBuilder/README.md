@@ -1,5 +1,5 @@
 # FreshRSS FeedTitleBuilder
-Build your own feed title based on url, days date and original feed title
+Build your own feed title based on url, the original feed title and the date the feed was added
 
 # Documentation
 
