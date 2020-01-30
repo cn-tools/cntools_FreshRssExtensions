@@ -47,6 +47,10 @@ Maybe the word 'host' provides to much, so i offer the following extra words:
 
 {url}hostname{/url}.{url}hosttld{/url} - {origtitle} (added {date}Ymd{/date})
 
+# Translations
+
+Feel free to send a new translation as pull request. I am happy to see!
+
 # Installation
 
 To install an extension, download the extension archive first and extract it on your PC.\
