@@ -1,0 +1,30 @@
+<?php
+
+return array(
+	'FeedTitleBuilder' => array(
+		'label4Template' => 'Titre du template de flux',
+		'helping' => 'Il y a plusieurs sections spécifiques vous permettant de personnaliser le titre de vos flux.',
+		'help4origtitle' => 'Utilisez ce code pour définir où devrait se trouver le titre original',
+		'help4date' => 'Avec ce code, vous pouvez ajoutez la date du jour dans votre format favoris. Utilisez votre moteur de recherche favoris pour trouver quels sont les paramètres disponibles avec la fonction date en php.<br />Pour plus de détails : <a href="https://www.php.net/manual/fr/function.date.php" target="_blank" rel="noopener nofollow">https://www.php.net/manual/fr/function.date.php</a><br />Exemple: {date}ymd{/date} => 20190401',
+		'help4phpparseurl' => 'L\'URL sera divisé avec la fonction php <code>parse_url</code> et vous pourrez obtenir une valeur spécifique du résultat. <br />Pour plus de détails : <a href="https://www.php.net/manual/fr/function.parse-url.php" target="_blank" rel="noopener nofollow">https://www.php.net/manual/fr/function.parse-url.php</a>',
+		'help4phpparseurlvalues' => 'Les mots spéciaux suivant sont disponibles :',
+		'help4phpparseurlschema' => 'Vous aurez \'http\', \'https\', \'ftp\', etc. Exemple : \'https\'.',
+		'help4phpparseurlhost' => 'Dans cet exemple, vous obtiendrez \'github.com\'.',
+		'help4phpparseurlport' => 'Vous aurez le port défini dans l\'url.',
+		'help4phpparseurluser' => 'Vous aurez l\user défini dans l\'url.',
+		'help4phpparseurlpass' => 'Vous aurez le password défini dans l\'url.',
+		'help4phpparseurlpath' => 'Dans cet exemple, vous obtiendrez \'/FreshRSS/FreshRSS\'.',
+		'help4phpparseurlquery' => 'Vous allez récupérer le texte entre \'?\' et \'#\'.',
+		'help4phpparseurlfragment' => 'Vous allez récupérer le texte après \'#\'.',
+		'help4phpparseurlhostspecial' => 'Peut-être que le mot clé \'host\' vous donnera un résultat peu lisible car trop grand. Vous pourrez alors utilisez les mots séparés par des \'.\' (point) de l\'URL de \'host\'.',
+		'help4phpparseurlhostsub' => 'Vous aurez le texte entier avant l\'avant-dernier point.',
+		'help4phpparseurlhostname' => 'Vous aurez le texte entre l\'avant-dernier point et le dernier point.',
+		'help4phpparseurlhosttld' => 'Vous aurez le texte après le dernier point.',
+		'example' => 'Exemple',
+		'example_template_code' => 'Template du code :',
+		'example_url' => 'URL :',
+		'example_title' => 'Titre du flux généré :',
+		'info' => 'Information:',
+		'infodesc' => 'Si le template est vide, vous aurez le titre original du flux ajouté !',
+	),
+);
