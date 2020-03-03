@@ -10,18 +10,18 @@ To design your preferred title as you like use the available special words.
 
 | Word | Description |
 | :---: | :--- |
-| {origtitle} | Use it for the original title of the feed you will add |
-| {date}value{/date} | Design a formatted date string as you like |
-| {url}value{/url} | Access to some text sections of the full url of the feed |
+| `{origtitle}` | Use it for the original title of the feed you will add |
+| `{date}value{/date}` | Design a formatted date string as you like |
+| `{url}value{/url}` | Access to some text sections of the full url of the feed |
 
 ### Date
 
-The code use the function 'date' of 'php'. So there are all characters available which this function can use.\
+The code use the function `date` of `php`. So there are all characters available which this function can use.\
 Have a look for details: [PHP Date](https://www.php.net/manual/en/function.date.php)
 
 ### URL
 
-The code use the function 'parse_url' of 'php'. Therefore you can use all words which are documented for it. Note that depending on the PHP version you are using, it may give different keywords.\
+The code use the function `parse_url` of `php`. Therefore you can use all words which are documented for it. Note that depending on the PHP version you are using, it may give different keywords.\
 Have a look for details: [PHP parse_url](https://www.php.net/manual/en/function.parse-url.php)
 
 **Probably the most needed words:**
@@ -45,11 +45,19 @@ Maybe the word 'host' provides to much, so i offer the following extra words:
 
 ## Example
 
-{url}hostname{/url}.{url}hosttld{/url} - {origtitle} (added {date}Ymd{/date})
+`{url}hostname{/url}.{url}hosttld{/url} - {origtitle} (added {date}Ymd{/date})`
 
 # Translations
 
-Feel free to send a new translation as pull request. I am happy to see!
+- English
+- German
+- French
+
+If your favorite language is not available, feel free to send a new translation as pull request. I am happy to see!
+
+# Special thanks
+
+- [Damien Leroy](https://github.com/ShiiFu) for translation into french
 
 # Installation
 
