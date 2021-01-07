@@ -1,0 +1,8 @@
+{
+	"name": "Copy2Clipboard",
+	"author": "CNTools | Clemens Neubauer",
+	"description": "Copy the destination links of all visible entries into clipboard",
+	"version": 0.1,
+	"entrypoint": "Copy2Clipboard",
+	"type": "user"
+}
