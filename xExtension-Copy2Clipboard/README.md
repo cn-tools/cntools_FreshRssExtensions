@@ -1,6 +1,6 @@
 # FreshRSS Copy2Clipboard
 This add on for FreshRSS add a button in the navigation bar to copy the destination links of all visible entries into clipboard.\
-Required FreshRSS version at least v1.??
+Required FreshRSS version at least v1.18
 
 # Documentation
 
