@@ -11,13 +11,16 @@ var cntCopy2Clipboard = {
                 let linkCount = 0;
                 let stream = document.getElementById('stream');
                 let links = stream.querySelectorAll('div.flux > ul > li.link > a');
-                links.forEach(function(item, index, arr){
+				
+				for (var i=0, n=links.length; i < n; ++i ) {
+					let item = links[i];
                     if (lResult != ''){
                         lResult = lResult + '\n';
                     }
                     lResult = lResult + item['href'];
                     linkCount++;
-                }, lResult);
+				}
+
                 trigger.setAttribute('data-lastcopycount', linkCount);
                 return lResult;
             }
