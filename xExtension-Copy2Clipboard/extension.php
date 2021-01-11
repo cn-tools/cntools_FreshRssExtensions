@@ -1,11 +1,21 @@
 <?php
 class Copy2ClipboardExtension extends Minz_Extension {
+    const CNT_REQUIRDED_FRESHRSS_VERSION = '1.18';
+
 	public function init() {
         $this->registerTranslates();
         Minz_View::appendScript($this->getFileUrl('clipboard.min.js', 'js'),'','','');
         Minz_View::appendScript($this->getFileUrl('copy2clipboard.js', 'js'),'','','');
 		$this->registerHook('js_vars', array('Copy2ClipboardExtension', 'CntJavascriptVars'));
 		$this->registerHook('nav_menu', array('Copy2ClipboardExtension', 'CntCopy2Clipboard'));
+	}
+
+	public function install() {
+        if (version_compare(FRESHRSS_VERSION, self::CNT_REQUIRDED_FRESHRSS_VERSION , '<')){
+            $this->registerTranslates();
+            return _t('ext.Copy2Clipboard.install.bad_freshrss', self::CNT_REQUIRDED_FRESHRSS_VERSION, FRESHRSS_VERSION);
+        }
+		return true;
 	}
 
     public static function CntJavascriptVars($vars){

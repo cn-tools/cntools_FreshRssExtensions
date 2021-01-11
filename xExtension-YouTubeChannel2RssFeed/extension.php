@@ -11,8 +11,18 @@ to: https://www.youtube.com/feeds/videos.xml?playlist_id=PLcZ1vtdmuI2P7eZvbSq_d5
 
 */
 class YouTubeChannel2RssFeedExtension extends Minz_Extension {
+    const CNT_REQUIRDED_FRESHRSS_VERSION = '1.16';
+
 	public function init() {
 		$this->registerHook('check_url_before_add', array('YouTubeChannel2RssFeedExtension', 'CntYTRssHookCheckURL'));
+	}
+
+	public function install() {
+        if (version_compare(FRESHRSS_VERSION, self::CNT_REQUIRDED_FRESHRSS_VERSION , '<')){
+            $this->registerTranslates();
+            return _t('ext.YouTubeChannel2RssFeed.install.bad_freshrss', self::CNT_REQUIRDED_FRESHRSS_VERSION, FRESHRSS_VERSION);
+        }
+		return true;
 	}
 
 	public static function CntYTRssHookCheckURL($url) {
