@@ -1,0 +1,29 @@
+<?php
+$c2cConfig = FreshRSS_Context::$user_conf->Copy2Clipboard;
+if (!in_array($c2cConfig['findcolor'], array('0','1'))) {
+    $c2cConfig['findcolor'] = '0';
+}
+?>
+<form action="<?php echo _url('extension', 'configure', 'e', urlencode($this->getName())); ?>" method="post">
+	<input type="hidden" name="_csrf" value="<?php echo FreshRSS_Auth::csrfToken(); ?>" />
+	<div class="form-group">
+		<label class="group-name" for="copy2clipboard_findcolor" title="<?php echo _t('ext.Copy2Clipboard.config.findcolor.desc'); ?>"><?php echo _t('ext.Copy2Clipboard.config.findcolor.label'); ?></label>
+		<div class="group-controls">
+            <select name="copy2clipboard_findcolor" id="copy2clipboard_findcolor">
+                <option value="0"<?= $c2cConfig['findcolor'] == '0' ? ' selected="selected"' : '' ?>><?php echo _t('ext.Copy2Clipboard.config.findcolor.options.default'); ?></option>
+				<option value="1"<?= $c2cConfig['findcolor'] == '1' ? ' selected="selected"' : '' ?>><?php echo _t('ext.Copy2Clipboard.config.findcolor.options.color'); ?></option>
+            </select>
+		</div>
+        <label class="group-name" for="copy2clipboard_color"><?php echo _t('ext.Copy2Clipboard.config.findcolor.options.color'); ?></label>
+        <div class="group-controls">
+            <input type="color" name="copy2clipboard_color" id="copy2clipboard_color" value="<?php echo $c2cConfig["color"]; ?>">
+        </div>
+	</div>
+
+	<div class="form-group form-actions">
+		<div class="group-controls">
+			<button type="submit" class="btn btn-important"><?php echo _t('gen.action.submit'); ?></button>
+			<button type="reset" class="btn"><?php echo _t('gen.action.cancel'); ?></button>
+		</div>
+	</div>
+</form>
