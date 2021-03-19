@@ -4,8 +4,8 @@ class Copy2ClipboardExtension extends Minz_Extension {
 
 	public function init() {
         $this->registerTranslates();
-        Minz_View::appendScript($this->getFileUrl('clipboard.min.js', 'js'),'','','');
-        Minz_View::appendScript($this->getFileUrl('copy2clipboard.js', 'js'),'','','');
+        Minz_View::appendScript($this->getFileUrl('clipboard.min.js', 'js'));
+		Minz_View::appendScript($this->getFileUrl('copy2clipboard.js', 'js'));
 		$this->registerHook('js_vars', array('Copy2ClipboardExtension', 'CntJavascriptVars'));
 		$this->registerHook('nav_menu', array('Copy2ClipboardExtension', 'CntCopy2Clipboard'));
 	}
