@@ -11,10 +11,13 @@ to: https://www.youtube.com/feeds/videos.xml?playlist_id=PLcZ1vtdmuI2P7eZvbSq_d5
 
 */
 class YouTubeChannel2RssFeedExtension extends Minz_Extension {
-    const CNT_REQUIRDED_FRESHRSS_VERSION = '1.16';
+	const CNT_REQUIRDED_FRESHRSS_VERSION = '1.16';
+	public static $channelID = '';
 
 	public function init() {
+		self::$channelID = '';
 		$this->registerHook('check_url_before_add', array('YouTubeChannel2RssFeedExtension', 'CntYTRssHookCheckURL'));
+		$this->registerHook('feed_before_insert', array('YouTubeChannel2RssFeedExtension', 'CntYTRssHookBeforeInsertFeed'));
 	}
 
 	public function install() {
@@ -25,10 +28,20 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
 		return true;
 	}
 
+	public static function CntYTRssHookBeforeInsertFeed($feed) {
+		if (self::$channelID != '') {
+			$lTxt = $feed->name() ? $feed->name() : 'YouTubeChannel2Rss by CN-Tools';
+			$url = 'https://www.scriptbarrel.com/xml.cgi?channel_id=' . self::$channelID . '&name=' . urlencode($lTxt);
+			$feed->_url($url);
+		}
+		return $feed;
+	}
+	
 	public static function CntYTRssHookCheckURL($url) {
         $matches = [];
 
         if (preg_match('#^https?://(www\.|)youtube\.com/channel/([0-9a-zA-Z_-]{6,36})#', $url, $matches) === 1) {
+			self::$channelID = $matches[2];
             return 'https://www.youtube.com/feeds/videos.xml?channel_id=' . $matches[2];
         }
 
