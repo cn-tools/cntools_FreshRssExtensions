@@ -25,6 +25,6 @@ jobs:
         stale-pr-message: 'Stale pull request message'
         stale-issue-label: 'no-issue-activity'
         stale-pr-label: 'no-pr-activity'
-        exempt-issue-labels: 'nostale'
-        exempt-pr-label: 'nostale'
+        exempt-issue-labels: 'nostale, enhancement, bug'
+        exempt-pr-label: 'nostale, enhancement, bug'
         labels-to-add-when-unstale: 'stale-removed'
