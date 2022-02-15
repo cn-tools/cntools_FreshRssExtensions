@@ -1,0 +1,8 @@
+{
+	"name": "Black List",
+	"author": "CNTools | Clemens Neubauer",
+	"description": "Blacklist to block feeds for users",
+	"version": "0.1-alpha",
+	"entrypoint": "BlackList",
+	"type": "system"
+}
