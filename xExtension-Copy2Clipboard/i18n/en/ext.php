@@ -10,7 +10,7 @@ return array(
                 'label' => 'Choose',
                 'desc' => '',
                 'options' => array(
-                    'default' => 'Standard',
+                    'default' => 'Default',
                     'color' => 'Color',
                 ),
             ),
