@@ -16,6 +16,12 @@ Have a look into the [DOCUMENTATION](https://github.com/cn-tools/cntools_FreshRs
 Transfer on the fly a YouTube-Channel into an RSS Feed\
 Required FreshRSS version at least v1.16
 
+# Translations
+
+[![Crowdin](https://badges.crowdin.net/cntools-freshrssextensions/localized.svg)](https://crowdin.com/project/cntools-freshrssextensions)
+
+You can help me to translate my extensions to a couple of language.
+
 # Installation
 
 To install an extension, download the extension archive first and extract it on your PC.\
