@@ -31,7 +31,7 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
 	public static function CntYTRssHookBeforeInsertFeed($feed) {
 		if (self::$channelID != '') {
 			$lTxt = $feed->name() ? $feed->name() : 'YouTubeChannel2Rss by CN-Tools';
-			$url = 'https://www.scriptbarrel.com/xml.cgi?channel_id=' . self::$channelID . '&name=' . urlencode($lTxt);
+			$url = 'https://www.youtube.com/feeds/videos.xml?channel_id=' . self::$channelID;
 			$feed->_url($url);
 		}
 		return $feed;
