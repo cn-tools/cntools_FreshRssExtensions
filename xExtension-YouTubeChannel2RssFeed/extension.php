@@ -39,7 +39,7 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
 	
 	public static function CntYTRssHookCheckURL($url) {
         $matches = [];
-        if (preg_match('#^https?://(www\.|)youtube\.com/channel/(@[0-9a-zA-Z_-])#', $url, $matches) === 1) {
+        if (preg_match('^https?://(www\.|)youtube\.com/(@[0-9a-zA-Z_-])', $url, $matches) === 1) {
                 ini_set("allow_url_fopen",1);
                 $json = file_get_contents('https://yt.lemnoslife.com/channels?handle=' . $matches[2]);
                 $data = json_decode($json);
