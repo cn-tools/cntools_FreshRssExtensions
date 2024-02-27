@@ -21,7 +21,7 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
 	}
 
 	public function install() {
-        if (version_compare(FRESHRSS_VERSION, self::CNT_REQUIRDED_FRESHRSS_VERSION , '<')){
+        if (version_compare(strval(FRESHRSS_VERSION), strval(self::CNT_REQUIRDED_FRESHRSS_VERSION), '<')){
             $this->registerTranslates();
             return _t('ext.YouTubeChannel2RssFeed.install.bad_freshrss', self::CNT_REQUIRDED_FRESHRSS_VERSION, FRESHRSS_VERSION);
         }
