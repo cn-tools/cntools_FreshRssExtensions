@@ -12,6 +12,9 @@ Required FreshRSS version at least v1.18
 Build your own feed title based on url, the original feed title and the date the feed was added\
 Have a look into the [DOCUMENTATION](https://github.com/cn-tools/cntools_FreshRssExtensions/tree/master/xExtension-FeedTitleBuilder)
 
+## FilterTitle
+This plug-in helps you to filter out feed entries by keywords parsed by the feed entry title
+
 ## RemoveEmojis
 This plug-in remove emojis in the title of newly added feed entries.
 
@@ -23,7 +26,7 @@ Required FreshRSS version at least v1.16
 
 [![Crowdin](https://badges.crowdin.net/cntools-freshrssextensions/localized.svg)](https://crowdin.com/project/cntools-freshrssextensions)
 
-You can help me to translate my extensions to a couple of language.
+You can help me to translate my extensions to a couple of language on [Crowdin](https://crowdin.com/project/cntools-freshrssextensions)
 
 # Installation
 
