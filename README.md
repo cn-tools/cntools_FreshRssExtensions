@@ -12,6 +12,9 @@ Required FreshRSS version at least v1.18
 Build your own feed title based on url, the original feed title and the date the feed was added\
 Have a look into the [DOCUMENTATION](https://github.com/cn-tools/cntools_FreshRssExtensions/tree/master/xExtension-FeedTitleBuilder)
 
+## RemoveEmojis
+This plug-in remove emojis in the title of newly added feed entries.
+
 ## YouTubeChannel2RssFeed
 Transfer on the fly a YouTube-Channel into an RSS Feed\
 Required FreshRSS version at least v1.16
