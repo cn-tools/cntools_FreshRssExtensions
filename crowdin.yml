@@ -5,5 +5,7 @@ files:
     translation: /xExtension-Copy2Clipboard/i18n/%two_letters_code%/ext.php
   - source: /xExtension-FeedTitleBuilder/i18n/de/ext.php
     translation: /xExtension-FeedTitleBuilder/i18n/%two_letters_code%/ext.php
+  - source: /xExtension-FilterTitle/i18n/de/ext.php
+    translation: /xExtension-FilterTitle/i18n/%two_letters_code%/ext.php
   - source: /xExtension-YouTubeChannel2RssFeed/i18n/de/ext.php
     translation: /xExtension-YouTubeChannel2RssFeed/i18n/%two_letters_code%/ext.php
