@@ -2,9 +2,9 @@
 	<input type="hidden" name="_csrf" value="<?php echo FreshRSS_Auth::csrfToken(); ?>" />
 
     <div class="form-group">
-		<label class="group-name" for="blacklist_keywords"><?php echo _t('ext.filter_title.keywords'); ?></label>
+		<label class="group-name" for="blacklist_title_keywords"><?php echo _t('ext.filter_title.keywords'); ?></label>
 		<div class="group-controls">
-			<textarea name="blacklist_keywords" id="blacklist_keywords"><?php echo $this->getBlackKeywords(); ?></textarea>
+			<textarea name="blacklist_title_keywords" id="blacklist_title_keywords"><?php echo $this->getBlackKeywords(); ?></textarea>
 		</div>
 	</div>
 
