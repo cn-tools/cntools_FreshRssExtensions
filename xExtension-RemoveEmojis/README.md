@@ -1,4 +1,4 @@
-# FreshRSS BlackList
+# FreshRSS Remove emojis
 
 This plug-in remove emojis in the title of newly added feed entries.
 
