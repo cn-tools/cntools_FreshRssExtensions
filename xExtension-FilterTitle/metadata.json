@@ -2,7 +2,7 @@
 	"name": "FilterTitle",
 	"author": "CNTools | Clemens Neubauer",
 	"description": "Get rid of some noise feed entries by filter keywords in title",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"entrypoint": "FilterTitle",
 	"type": "system"
 }

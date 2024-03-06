@@ -5,7 +5,17 @@
 <form action="<?php echo _url('extension', 'configure', 'e', urlencode($this->getName())); ?>" method="post">
 	<input type="hidden" name="_csrf" value="<?php echo FreshRSS_Auth::csrfToken(); ?>" />
 
-    <div class="form-group">
+	<div class="form-group">
+		<label class="group-name" for="check_type"><?= _t('ext.filter_title.check_type'); ?></label>
+		<div class="group-controls">
+            <select name="check_type" id="check_type">
+                <option value="0"<?= $this->getSystemConfigurationValue('check_type') != '1' ? ' selected="selected"' : '' ?>><?php echo _t('ext.filter_title.block'); ?></option>
+				<option value="1"<?= $this->getSystemConfigurationValue('check_type') == '1' ? ' selected="selected"' : '' ?>><?php echo _t('ext.filter_title.free'); ?></option>
+            </select>
+		</div>
+	</div>
+
+	<div class="form-group">
 		<label class="group-name" for="blacklist_title_keywords"><?php echo _t('ext.filter_title.keywords'); ?></label>
 		<div class="group-controls">
 			<textarea name="blacklist_title_keywords" id="blacklist_title_keywords"><?php echo $this->getBlackKeywords(); ?></textarea>
