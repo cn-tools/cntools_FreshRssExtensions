@@ -13,7 +13,7 @@ Build your own feed title based on url, the original feed title and the date the
 Have a look into the [DOCUMENTATION](https://github.com/cn-tools/cntools_FreshRssExtensions/tree/master/xExtension-FeedTitleBuilder)
 
 ## FilterTitle
-This plug-in helps you to filter out feed entries by keywords parsed by the feed entry title
+This plug-in helps you to filter feed entries by keywords parsed by the feed entry title
 
 ## RemoveEmojis
 This plug-in remove emojis in the title of newly added feed entries.
