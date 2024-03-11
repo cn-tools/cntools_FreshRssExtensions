@@ -12,42 +12,65 @@ class FilterTitleExtension extends Minz_Extension {
 
         if (Minz_Request::isPost()) {
             $configuration = [
-                'check_type' => Minz_Request::param('check_type', '0'),
-                'blacklist_title_keywords' => Minz_Request::paramTextToArray('blacklist_title_keywords', []),
+                'blacklist' => Minz_Request::paramTextToArray('blacklist', []),
+                'whitelist' => Minz_Request::paramTextToArray('whitelist', []),
             ];
             $this->setSystemConfiguration($configuration);
         }
     }
 
     public function filterTitle($entry) {
-        $patterns = $this->getSystemConfigurationValue('blacklist_title_keywords') ?? [];
-        if (is_array($patterns)) {
-            $doRelease = (intval($this->getSystemConfigurationValue('blacklist_title_keywords', '0')) == 1);
-            foreach ($patterns as $pattern) {
-                if ($doRelease === true) {
-                    if (1 === preg_match($pattern, $entry->title())) {
-                        // do nothing
-                    } elseif (strpos($entry->title(), $patterns) !== false) {
-                        // do nothing
-                    } else {
+        if (is_object($entry) === true) {
+            //-- do check BLACKLIST ---------------------------
+            $patterns = $this->getSystemConfigurationValue('blacklist') ?? [];
+            if (is_array($patterns)) {
+                foreach ($patterns as $pattern) {
+                    if (self::isPatternFound($entry->title(), $pattern) == true) {
                         Minz_Log::warning(_t('ext.filter_title.warning.not_allowed_keyword', $entry->title()));
                         return null;
                     }
-                } else {
-                    if (strpos($entry->title(), $patterns) !== false) {
-                        Minz_Log::warning(_t('ext.filter_title.warning.not_allowed_keyword', $entry->title()));
-                        return null;
-                    } elseif (1 === preg_match($pattern, $entry->title())) {
+                }
+            }
+
+            //-- do check WHITELIST ---------------------------
+            $patterns = $this->getSystemConfigurationValue('whitelist') ?? [];
+            if (is_array($patterns)) {
+                foreach ($patterns as $pattern) {
+                    if (self::isPatternFound($entry->title(), $pattern) == false) {
                         Minz_Log::warning(_t('ext.filter_title.warning.not_allowed_keyword', $entry->title()));
                         return null;
                     }
                 }
             }
         }
+
         return $entry;
     }
 
-    public function getBlackKeywords() {
-        return implode(PHP_EOL, $this->getSystemConfigurationValue('blacklist_title_keywords') ?? []);
+    private function isPatternFound(string $title, string $pattern): bool {
+        if (1 === preg_match($pattern, $title)) {
+            return true;
+        } elseif (strpos($title, $pattern) !== false) {
+            return true;
+        }
+        return false;
+    }
+
+    public function getBlacklistData() {
+        if ($this->getSystemConfigurationValue('check_type') == '0') {
+            // 20240311 - Until version v0.0.2 there was only blacklist OR whitelist availabe
+            return implode(PHP_EOL, $this->getSystemConfigurationValue('blacklist_title_keywords') ?? []);
+        } else {
+            return implode(PHP_EOL, $this->getSystemConfigurationValue('blacklist') ?? []);
+        }
+    }
+
+    public function getWhitelistData() {
+        if ($this->getSystemConfigurationValue('check_type') == '1') {
+            // 20240311 - Until version v0.0.2 there was only blacklist OR whitelist availabe
+            return implode(PHP_EOL, $this->getSystemConfigurationValue('blacklist_title_keywords') ?? []);
+        } else {
+            return implode(PHP_EOL, $this->getSystemConfigurationValue('whitelist') ?? []);
+        }
     }
 }

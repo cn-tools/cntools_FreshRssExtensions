@@ -2,7 +2,7 @@
 	"name": "FilterTitle",
 	"author": "CNTools | Clemens Neubauer",
 	"description": "Filter feed entries by filter keywords in title",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"entrypoint": "FilterTitle",
 	"type": "system"
 }
