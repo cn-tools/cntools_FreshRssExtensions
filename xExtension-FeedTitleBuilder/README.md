@@ -1,12 +1,12 @@
 # FreshRSS FeedTitleBuilder
 Build your own feed title based on url, the original feed title and the date the feed was added
 
-# Documentation
+## Documentation
 
 This add on for FreshRSS change the title of the rss feed. It is working in the adding process only. After that process this add on have no effect.\
 To design your preferred title as you like use the available special words.
 
-## Available special words
+### Available special words
 
 | Word | Description |
 | :---: | :--- |
@@ -43,23 +43,25 @@ Maybe the word 'host' provides to much, so i offer the following extra words:
 | hostname | You will get the text between the penultimate and last dot. |
 | hosttld | You will get the text after the last dot. |
 
-## Example
+### Example
 
 `{url}hostname{/url}.{url}hosttld{/url} - {origtitle} (added {date}Ymd{/date})`
 
-# Translations
+## Translations
 
 - English
 - German
 - French
 
-If your favorite language is not available, feel free to send a new translation as pull request. I am happy to see!
+[![Crowdin](https://badges.crowdin.net/cntools-freshrssextensions/localized.svg)](https://crowdin.com/project/cntools-freshrssextensions)
 
-# Special thanks
+You can help me to translate my extensions to a couple of languages on [Crowdin](https://crowdin.com/project/cntools-freshrssextensions). Or send me a new translation as pull request. I am happy to see!
+
+## Special thanks
 
 - [Damien Leroy](https://github.com/ShiiFu) for translation into french
 
-# Installation
+## Installation
 
 To install an extension, download the extension archive first and extract it on your PC.\
 Then, upload the specific extension(s) you want on your server.

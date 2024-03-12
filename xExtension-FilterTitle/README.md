@@ -4,9 +4,9 @@ A FreshRSS extension to filter feed entries by title.
 
 ## Documentation
 
-You can specify whether the specified keywords should be used as a blacklist or as a whitelist.
+You can define keywords to be used as blacklist or whitelist. Those on the blacklist have higher priority than those on the whitelist.
 
-Each line is checked individually. In addition to normal texts, RegEx expressions can also be defined. These must be able to be evaluated using the PHP function preg_match.
+Each line is checked individually. In addition to normal texts, RegEx expressions can also be defined. These must be able to be evaluated using the PHP function `preg_match`.
 
 Examples:
 
@@ -22,7 +22,9 @@ other
 - English
 - German
 
-If your favorite language is not available, feel free to send a new translation as pull request. I am happy to see!
+[![Crowdin](https://badges.crowdin.net/cntools-freshrssextensions/localized.svg)](https://crowdin.com/project/cntools-freshrssextensions)
+
+You can help me to translate my extensions to a couple of languages on [Crowdin](https://crowdin.com/project/cntools-freshrssextensions). Or send me a new translation as pull request. I am happy to see!
 
 ## Special Thanks
 
