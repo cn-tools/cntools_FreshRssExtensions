@@ -17,6 +17,8 @@ spam name
 other
 ```
 
+Additional you can choose if the blocked entries should be deleted (default) or should marked as read.
+
 ## Translations
 
 - English

@@ -12,8 +12,9 @@ class FilterTitleExtension extends Minz_Extension {
 
         if (Minz_Request::isPost()) {
             $configuration = [
-                'blacklist' => Minz_Request::paramTextToArray('blacklist', []),
-                'whitelist' => Minz_Request::paramTextToArray('whitelist', []),
+                'blacklist' => array_filter(Minz_Request::paramTextToArray('blacklist', [])),
+                'mark_as_readed' => Minz_Request::paramString('mark_as_read'),
+                'whitelist' => array_filter(Minz_Request::paramTextToArray('whitelist', [])),
             ];
             $this->setSystemConfiguration($configuration);
         }
@@ -26,8 +27,15 @@ class FilterTitleExtension extends Minz_Extension {
             if (is_array($patterns)) {
                 foreach ($patterns as $pattern) {
                     if (self::isPatternFound($entry->title(), $pattern) == true) {
-                        Minz_Log::warning(_t('ext.filter_title.warning.not_allowed_keyword', $entry->title()));
-                        return null;
+                        if ($this->getSystemConfigurationValue('mark_as_read') == '1') {
+                            // add entry into database and mark as read
+                            $entry->_isRead(true);
+                            return $entry;
+                        } else {
+                            // add entry into database not allowed
+                            Minz_Log::warning(_t('ext.filter_title.warning.not_allowed_keyword', $entry->title()));
+                            return null;
+                        }
                     }
                 }
             }
@@ -37,8 +45,15 @@ class FilterTitleExtension extends Minz_Extension {
             if (is_array($patterns)) {
                 foreach ($patterns as $pattern) {
                     if (self::isPatternFound($entry->title(), $pattern) == false) {
-                        Minz_Log::warning(_t('ext.filter_title.warning.not_allowed_keyword', $entry->title()));
-                        return null;
+                        if ($this->getSystemConfigurationValue('mark_as_read') == '1') {
+                            // add entry into database and mark as read
+                            $entry->_isRead(true);
+                            return $entry;
+                        } else {
+                            // add entry into database not allowed
+                            Minz_Log::warning(_t('ext.filter_title.warning.not_allowed_keyword', $entry->title()));
+                            return null;
+                        }
                     }
                 }
             }
