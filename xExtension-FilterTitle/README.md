@@ -17,7 +17,7 @@ spam name
 other
 ```
 
-Additional you can choose if the blocked entries should be deleted (default) or should marked as read.
+Additional you can choose if the blocked entries not be added into database (default) or added into database but marked as read.
 
 ## Translations
 
