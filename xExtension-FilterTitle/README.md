@@ -31,3 +31,4 @@ You can help me to translate my extensions to a couple of languages on [Crowdin]
 ## Special Thanks
 
 - base developed by [6david9](https://github.com/6david9) with [PR](https://github.com/cn-tools/cntools_FreshRssExtensions/pull/9)
+- [lamyergeier](https://github.com/lamyergeier) for testing
