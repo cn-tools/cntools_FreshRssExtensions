@@ -1,0 +1,34 @@
+<?php
+    declare(strict_types=1);
+    /** @var YouTubeChannel2RssFeedExtension $this */
+?>
+<form action="<?php echo _url('extension', 'configure', 'e', urlencode($this->getName())); ?>" method="post">
+    <input type="hidden" name="_csrf" value="<?php echo FreshRSS_Auth::csrfToken(); ?>" />
+
+    <div class="form-group">
+        <label class="group-name" for="shorts"><?= _t('ext.YouTubeChannel2RssFeed.shorts.label') ?></label>
+        <div class="group-controls">
+            <select name="shorts" id="shorts">
+                <option value="0" title="<?php echo _t('ext.YouTubeChannel2RssFeed.shorts.options.default.title'); ?>"><?php echo _t('ext.YouTubeChannel2RssFeed.shorts.options.default.text'); ?></option>
+                <option value="block"<?= FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed["shorts"] == 'block' ? ' selected="selected"' : '' ?> title="<?php echo _t('ext.YouTubeChannel2RssFeed.shorts.options.block.title'); ?>"><?php echo _t('ext.YouTubeChannel2RssFeed.shorts.options.block.text'); ?></option>
+                <option value="mark_as_read"<?= FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed["shorts"] == 'mark_as_read' ? ' selected="selected"' : '' ?> title="<?php echo _t('ext.YouTubeChannel2RssFeed.shorts.options.mark_as_read.title'); ?>"><?php echo _t('ext.YouTubeChannel2RssFeed.shorts.options.mark_as_read.text'); ?></option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="group-name" for="3rd_party_url"><?php echo _t('ext.YouTubeChannel2RssFeed.3rd_party.url'); ?></label>
+        <div class="group-controls">
+            <input type="url" name="3rd_party_url" id="3rd_party_url" placeholder="Ex: https://yt.lemnoslife.com" value="<?php echo FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed["3rd_party_url"]; ?>">
+            <br /><span><?= _t('ext.YouTubeChannel2RssFeed.3rd_party.hint') ?></span>
+            <br /><span><?= _t('ext.YouTubeChannel2RssFeed.3rd_party.instance') ?> <a href="https://github.com/Benjamin-Loison/YouTube-operational-API" target="_blank">https://github.com/Benjamin-Loison/YouTube-operational-API</a></span>
+        </div>
+    </div>
+
+    <div class="form-group form-actions">
+        <div class="group-controls">
+            <button type="submit" class="btn btn-important"><?php echo _t('gen.action.submit'); ?></button>
+            <button type="reset" class="btn"><?php echo _t('gen.action.cancel'); ?></button>
+        </div>
+    </div>
+</form>

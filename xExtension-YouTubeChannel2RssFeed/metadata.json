@@ -1,8 +1,8 @@
 {
 	"name": "YouTubeChannel2RssFeed",
 	"author": "CNTools | Clemens Neubauer",
-	"description": "Transfer YouTube Channel URL into RSS Feed URL.",
-	"version": "0.5",
+	"description": "Transfer YouTube URL into RSS Feed URL.",
+	"version": "0.6.0-alpha",
 	"entrypoint": "YouTubeChannel2RssFeed",
 	"type": "user"
 }
