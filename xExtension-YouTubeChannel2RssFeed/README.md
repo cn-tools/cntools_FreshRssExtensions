@@ -55,22 +55,22 @@ Extensions must be in the ./extensions directory of your FreshRSS installation.
 - add functionallity to detect YouTube shorts
 - add option to mark shorts as read or block it
 
-### v0.0.5 (2024-02-27)
+### v0.5.0 (2024-02-27)
 
 - modify function call of php `version_compare`
 
-### v0.0.4 (2023-12-02)
+### v0.4.0 (2023-12-02)
 
 - Removed third party url call from v0.0.3
 
-### v0.0.3 (2022-02-11)
+### v0.3.0 (2022-02-11)
 
 - Receive 50 instead of 15 items from YouTube by using third party service found on [stackoverflow.com](https://stackoverflow.com/questions/56430703/how-to-use-youtube-data-api-v3-to-get-more-than-15-videos-in-an-rss-reader-ne) by [Bman70](https://stackoverflow.com/users/7922428/bman70)
 
-### v0.0.2 (2020-01-10)
+### v0.2.0 (2020-01-10)
 
 - add support for playlist and user links
 
-### v0.0.1 (2019-12-06)
+### v0.1.0 (2019-12-06)
 
 - init version for YouTube channel links
