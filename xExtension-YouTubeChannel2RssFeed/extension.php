@@ -77,7 +77,7 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
                         try {
                             Minz_Log::debug('YouTubeChannel2RssFeed-CntYTRssHookCheckURL: 3rdParty - start');
                             ini_set("allow_url_fopen", 1);
-                            $json = @file_get_contents($extUrl . '/channels?handle=' . $matches[2]) or throw new Exception(error_get_last()['message']);
+                            $json = file_get_contents($extUrl . '/channels?handle=' . $matches[2]);
                             Minz_Log::debug('YouTubeChannel2RssFeed-CntYTRssHookCheckURL: 3rdParty - json=' . serialize($json));
                         } finally {
                             ini_set("allow_url_fopen", $origAllowUrlFopen);
@@ -158,7 +158,7 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
                 try {
                     Minz_Log::debug('YouTubeChannel2RssFeed-isShort: fOpen - start');
                     ini_set("allow_url_fopen", 1);
-                    $json = @file_get_contents($extUrl . '/videos?part=short&id=' . $ytID) or throw new Exception(error_get_last()['message']);
+                    $json = file_get_contents($extUrl . '/videos?part=short&id=' . $ytID);
                     Minz_Log::debug('YouTubeChannel2RssFeed-isShort: fOpen - data: ' . serialize($json));
                 } finally {
                     ini_set("allow_url_fopen", $origAllowUrlFopen);
