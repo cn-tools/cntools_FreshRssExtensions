@@ -7,7 +7,7 @@ return array(
         ),
         'config' => array(
             'findcolor' => array(
-                'label' => 'Auswählen',
+                'label' => 'Auswahl',
                 'desc' => '',
                 'options' => array(
                     'default' => 'Standard',
@@ -21,7 +21,7 @@ return array(
             'bad' => 'Beim Kopieren trat ein Fehler auf!',
         ),
         'install' => array(
-            'bad_freshrss' => 'Für "Copy2Clipboard" ist mindestens die FreshRSS-Version `%s` erforderlich. (Du verwendest die FreshRSS-Version `%s`)',
+            'bad_freshrss' => 'Für "Copy2Clipboard" ist mindestens die FreshRSS-Version `%s` erforderlich. (Sie verwenden die FreshRSS-Version `%s`)',
         ),
     ),
 );
