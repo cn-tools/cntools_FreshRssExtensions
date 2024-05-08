@@ -3,6 +3,10 @@
 return array(
     'YouTubeChannel2RssFeed' => array(
         '3rd_party' => array(
+            'help' => array(
+                'lnk_txt' => 'Dokumentation',
+                'text' => 'Details über die Konfiguration und Funktionsweise finden sie hier:',
+            ),
             'hint' => 'Mit Hilfe der anzugebenden URL können einerseits YoutTube Shorts identifiziert werden und andererseits können YouTube Handels in Feeds umgewandelt werden',
             'instance' => 'Instanz von:',
             'url' => 'URL',
