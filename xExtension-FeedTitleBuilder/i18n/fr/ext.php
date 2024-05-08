@@ -8,7 +8,7 @@ return array(
 		'help4date' => 'Avec ce code, vous pouvez ajoutez la date du jour dans votre format favoris. Utilisez votre moteur de recherche favoris pour trouver quels sont les paramètres disponibles avec la fonction date en php.<br />Pour plus de détails : <a href="https://www.php.net/manual/fr/function.date.php" target="_blank" rel="noopener nofollow">https://www.php.net/manual/fr/function.date.php</a><br />Exemple: {date}ymd{/date} => 20190401',
 		'help4phpparseurl' => 'L\'URL sera divisé avec la fonction php <code>parse_url</code> et vous pourrez obtenir une valeur spécifique du résultat. <br />Pour plus de détails : <a href="https://www.php.net/manual/fr/function.parse-url.php" target="_blank" rel="noopener nofollow">https://www.php.net/manual/fr/function.parse-url.php</a>',
 		'help4phpparseurlvalues' => 'Les mots spéciaux suivant sont disponibles :',
-		'help4phpparseurlschema' => 'Vous aurez \'http\', \'https\', \'ftp\', etc. Exemple : \'https\'.',
+		'help4phpparseurlschema' => 'Vous aurez \'HTTP\', \'HTTPS\', \'FTP\', etc. Exemple : \'HTTPS\'',
 		'help4phpparseurlhost' => 'Dans cet exemple, vous obtiendrez \'github.com\'.',
 		'help4phpparseurlport' => 'Vous aurez le port défini dans l\'url.',
 		'help4phpparseurluser' => 'Vous aurez l\user défini dans l\'url.',
@@ -24,7 +24,7 @@ return array(
 		'example_template_code' => 'Template du code :',
 		'example_url' => 'URL :',
 		'example_title' => 'Titre du flux généré :',
-		'info' => 'Information:',
+		'info' => 'Information :',
 		'infodesc' => 'Si le template est vide, vous aurez le titre original du flux ajouté !',
 	),
 );
