@@ -14,22 +14,46 @@ You can easily add Youtube video subscriptions by pasting URLs like:
 - `https://www.youtube.com/channel/UClvRFciRu04eKgti3g7qHUA`
 - `https://www.youtube.com/user/YouTube`
 - `https://www.youtube.com/playlist?list=PLcZ1vtdmuI2P7eZvbSq_d5mJXXywHtfyq`
-- `https://www.youtube.com/@youtube` (by defining a third party service)
 
-In order to convert "YouTube Handels" into an RSS feed, third-party software is required and this must be an instance of [YouTube-operational-API](https://github.com/Benjamin-Loison/YouTube-operational-API). Please check the manufacturer's website to see if a publicly accessible instance is provided. Otherwise for example, you can host your own instance using a [Docker container](https://hub.docker.com/r/benjaminloison/youtube-operational-api).
+### YouTube handles
+
+If you like to add YouTube handles easily too, you must config a third party service URL. This must be an instance of [YouTube-operational-API](https://github.com/Benjamin-Loison/YouTube-operational-API). Please check the manufacturer's website of this third party software to see if a publicly accessible instance is provided. I rename it now YT-OAPI 😉.
+
+YouTube handles URL look like:
+
+- `https://www.youtube.com/@youtube`
+
+If you don't want to use a publicly instance of YT-OAPI you can host your own instance. For example as [Docker container](https://hub.docker.com/r/benjaminloison/youtube-operational-api). For detail informations have a look in the documentation on manufacturer's website.
+
+#### My prefered YAML code for a self hostet Docker container
 
 ```yaml
 version: "3"
 services:
   youtube-operational-api:
-    container_name: youtube-operational-api
     image: benjaminloison/youtube-operational-api:latest
     restart: unless-stopped
     ports:
-      - "1234:80"
+      - "<choose-your-own>:80"
 ```
 
-In addition, this third-party software makes it possible to identify YouTube shorts. Therefore, there is the option in the settings to mark these YouTube shorts as read when the RSS article is received or not to save it in the database at all. In order to be able to track it, a note is written to the FreshRSS LOG file in both of these cases.
+**Attention:** This is a demo code only! You have to change it to your own preferences.
+
+If you deploy FreshRSS and YT-OAPI within the same Docker compose file, the URL looks a little different. Therefore you have to use the given name of the service for YT-OAPI in combination with the port inside the container.
+
+Based on the example above, you need to enter the following URL in the settings of this add-on:
+
+```url
+http://youtube-operational-api:80
+```
+
+### Detect YouTube shorts
+
+In addition, YT-OAPI makes it possible to identify YouTube shorts. Therefore, there is an option in the settings to mark these YouTube shorts as readed when the RSS article is received, or not to save it in the database at all. In order to be able to track it, a log is written into FreshRSS LOG file in both of these cases.
+
+#### Default configuration for YouTube shorts
+
+Add YouTube shorts into database without any restcritions or changes.
 
 ## Translations
 
@@ -61,7 +85,7 @@ Extensions must be in the ./extensions directory of your FreshRSS installation.
 
 ### v0.4.0 (2023-12-02)
 
-- Removed third party url call from v0.0.3
+- Removed third party URL call from v0.0.3
 
 ### v0.3.0 (2022-02-11)
 
