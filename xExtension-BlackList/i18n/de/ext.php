@@ -2,9 +2,9 @@
 
 return [
     'black_list' => [
-        'blocked_patterns' => 'Blockierte Muster',
+        'blocked_patterns' => 'Muster der Sperrliste',
         'warning' => [
-            'not_allowed_msg' => '"%s" ist ein gesperrtes Muster. Kontaktieren sie ihren Administrator für mehr Informationen.',
+            'not_allowed_msg' => '"%s" ist ein gesperrtes Muster. Kontaktiere deinen Administrator für mehr Informationen.',
         ],
     ],
 ];
