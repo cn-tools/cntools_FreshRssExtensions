@@ -1,11 +1,11 @@
 files:
-  - source: /xExtension-BlackList/i18n/de/ext.php
+  - source: /xExtension-BlackList/i18n/en/ext.php
     translation: /xExtension-BlackList/i18n/%two_letters_code%/ext.php
-  - source: /xExtension-Copy2Clipboard/i18n/de/ext.php
+  - source: /xExtension-Copy2Clipboard/i18n/en/ext.php
     translation: /xExtension-Copy2Clipboard/i18n/%two_letters_code%/ext.php
-  - source: /xExtension-FeedTitleBuilder/i18n/de/ext.php
+  - source: /xExtension-FeedTitleBuilder/i18n/en/ext.php
     translation: /xExtension-FeedTitleBuilder/i18n/%two_letters_code%/ext.php
-  - source: /xExtension-FilterTitle/i18n/de/ext.php
+  - source: /xExtension-FilterTitle/i18n/en/ext.php
     translation: /xExtension-FilterTitle/i18n/%two_letters_code%/ext.php
-  - source: /xExtension-YouTubeChannel2RssFeed/i18n/de/ext.php
+  - source: /xExtension-YouTubeChannel2RssFeed/i18n/en/ext.php
     translation: /xExtension-YouTubeChannel2RssFeed/i18n/%two_letters_code%/ext.php
