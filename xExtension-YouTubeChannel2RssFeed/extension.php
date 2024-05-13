@@ -39,7 +39,6 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
             $config = [
                 '3rd_party_url' => rtrim(Minz_Request::paramString('3rd_party_url', ''), '/'),
                 'shorts' => Minz_Request::paramString('shorts', ''),
-                'entrytag' => Minz_Request::paramString('entrytag', ''),
             ];
 
             FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed = $config;
