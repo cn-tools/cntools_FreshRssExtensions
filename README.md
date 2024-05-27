@@ -26,10 +26,15 @@ This plug-in helps you to filter feed entries by keywords parsed by the feed ent
 
 This plug-in remove emojis in the title of newly added feed entries.
 
+### SendToMyJD2
+
+Send links of new feed entries to your jDownloader2 instance\
+Have a look into the [DOCUMENTATION](https://github.com/cn-tools/cntools_FreshRssExtensions/tree/master/xExtension-SendToMyJD2#documentation)
+
 ### YouTubeChannel2RssFeed
 
 Transfer on the fly a YouTube URL into an RSS Feed\
-Have a look into the [DOCUMENTATION](https://github.com/cn-tools/cntools_FreshRssExtensions/tree/master/xExtension-YouTubeChannel2RssFeed)
+Have a look into the [DOCUMENTATION](https://github.com/cn-tools/cntools_FreshRssExtensions/tree/master/xExtension-YouTubeChannel2RssFeed#documentation)
 
 ## Translations
 
