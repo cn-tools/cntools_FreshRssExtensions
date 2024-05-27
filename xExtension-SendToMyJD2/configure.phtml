@@ -1,0 +1,50 @@
+<form action="<?= _url('extension', 'configure', 'e', urlencode($this->getName())); ?>" method="post">
+	<input type="hidden" name="_csrf" value="<?= FreshRSS_Auth::csrfToken(); ?>" />
+
+    <div class="form-group">
+        <label class="group-name" for="SendToMyJD2_email"><?= _t('ext.SendToMyJD2.config.email_label'); ?></label>
+        <div class="group-controls">
+            <input type="email" name="SendToMyJD2_email" id="SendToMyJD2_email" placeholder="example@domain.tld" value="<?= FreshRSS_Context::$user_conf->SendToMyJD2["email"] ?? ''; ?>" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="group-name" for="SendToMyJD2_password" placeholder=""><?= _t('ext.SendToMyJD2.config.password_label'); ?></label>
+        <div class="group-controls">
+            <input type="password" name="SendToMyJD2_password" id="SendToMyJD2_password" value="<?= FreshRSS_Context::$user_conf->SendToMyJD2["password_plain"] ?? ''; ?>" required>
+            <div><?= _t('ext.SendToMyJD2.config.password_danger'); ?></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="group-name" for="SendToMyJD2_device"><?= _t('ext.SendToMyJD2.config.device_label'); ?></label>
+        <div class="group-controls">
+            <input type="text" name="SendToMyJD2_device" id="SendToMyJD2_device" list="SendToMyJD2_devices" value="<?= FreshRSS_Context::$user_conf->SendToMyJD2["device"] ?? ''; ?>">
+            <?= $this->getDevicesDatalistHTML(); ?>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="group-name" for="SendToMyJD2_patterns"><?= _t('ext.SendToMyJD2.config.data_label'); ?></label>
+        <div class="group-controls">
+            <textarea name="SendToMyJD2_patterns" id="SendToMyJD2_patterns" wrap="off" style="white-space: nowrap;" required><?= $this->getDataPatterns(); ?></textarea>
+            <br /><span><?= _t('ext.SendToMyJD2.config.data_help') ?></span>
+            <br /><span><a href="https://github.com/cn-tools/cntools_FreshRssExtensions/tree/master/xExtension-SendToMyJD2#documentation" target="_blank"><?= _t('ext.SendToMyJD2.config.data_help_lnk_txt'); ?></a></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="group-name" for="SendToMyJD2_sendtestdata"><?= _t('ext.SendToMyJD2.config.testdata') ?></label>
+        <div class="group-controls">
+            <input type="checkbox" name="SendToMyJD2_sendtestdata" id="SendToMyJD2_sendtestdata" value="1">
+            <span><?= _t('ext.SendToMyJD2.config.testdata_hint') ?></span><a href="<?= $this->getYouTubeTestLink(); ?>" target="_blank">LINK</a>
+        </div>
+    </div>
+
+    <div class="form-group form-actions">
+		<div class="group-controls">
+			<button type="submit" class="btn btn-important"><?= _t('gen.action.submit'); ?></button>
+			<button type="reset" class="btn"><?= _t('gen.action.cancel'); ?></button>
+		</div>
+	</div>
+</form>

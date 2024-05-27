@@ -1,0 +1,8 @@
+{
+	"name": "SendToMyJD2",
+	"author": "CNTools | Clemens Neubauer",
+	"description": "Send links to a jDownloader2 instance with the myJDownloader2 API",
+	"version": "0.0.1-alpha",
+	"entrypoint": "SendToMyJD2",
+	"type": "user"
+}
