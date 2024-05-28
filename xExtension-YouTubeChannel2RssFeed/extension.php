@@ -39,6 +39,7 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
             $config = [
                 '3rd_party_url' => rtrim(Minz_Request::paramString('3rd_party_url', ''), '/'),
                 'shorts' => Minz_Request::paramString('shorts', ''),
+                'short_duration' => Minz_Request::paramString('short_duration', 0),
             ];
 
             FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed = $config;
@@ -46,7 +47,11 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
         }
     }
 
-    public static function CntYTRssHookCheckURL($url) {
+    public function getShortDuration():int {
+        return (array_key_exists('short_duration', FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed)) ? intval(FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed["short_duration"]) : 0;
+    }
+
+    public function CntYTRssHookCheckURL($url) {
         Minz_Log::debug('YouTubeChannel2RssFeed-CntYTRssHookCheckURL: START - ' . $url);
         if (stripos($url, self::CNT_YT_FEEDURL) === false) {
             $origUrl = $url;
@@ -98,7 +103,7 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
         return $url;
     }
 
-    public static function CntYTRssHookEntryBeforeInsert($entry) {
+    public function CntYTRssHookEntryBeforeInsert($entry) {
         Minz_Log::debug('YouTubeChannel2RssFeed-EntryBeforeInsert - START');
         try {
             if ((is_object($entry)) && (strpos($entry->guid(), self::CNT_YT_VIDEO) !== false)) {
@@ -144,7 +149,7 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
         return $entry;
     }
 
-    private static function isShort($entry, $extUrl, $ytID): bool {
+    private function isShort($entry, $extUrl, $ytID): bool {
         Minz_Log::debug('YouTubeChannel2RssFeed-isShort: START');
         $result = false;
         try {
@@ -154,10 +159,17 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
 
                 $origAllowUrlFopen = ini_get('allow_url_fopen');
 
+                $part = 'short';
+
+                $shortDuration = $this->getShortDuration();
+                if ($shortDuration > 0) {
+                    $part .= ',contentDetails';
+                }
+
                 try {
                     Minz_Log::debug('YouTubeChannel2RssFeed-isShort: fOpen - start');
                     ini_set("allow_url_fopen", 1);
-                    $json = file_get_contents($extUrl . '/videos?part=short&id=' . $ytID);
+                    $json = file_get_contents($extUrl . '/videos?part=' . $part . '&id=' . $ytID);
                     Minz_Log::debug('YouTubeChannel2RssFeed-isShort: fOpen - data: ' . serialize($json));
                 } finally {
                     ini_set("allow_url_fopen", $origAllowUrlFopen);
@@ -175,18 +187,36 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
                             Minz_Log::debug('YouTubeChannel2RssFeed-isShort: id is set');
                             if ($item->id == $ytID) {
                                 Minz_Log::debug('YouTubeChannel2RssFeed-isShort: id found: ' . $ytID);
-                                if (isset($item->short)) {
+
+                                // check short directly
+                                if (($result == false) && (isset($item->short))) {
                                     Minz_Log::debug('YouTubeChannel2RssFeed-isShort: short is set');
                                     if (isset($item->short->available)) {
                                         Minz_Log::debug('YouTubeChannel2RssFeed-isShort: available is set');
                                         if ($item->short->available == true) {
                                             $result = true;
                                             Minz_Log::debug('YouTubeChannel2RssFeed-isShort: THIS IS A SHORT');
-                                        } else {
-                                            $result = false;
-                                            Minz_Log::debug('YouTubeChannel2RssFeed-isShort: THIS IS NO SHORT');
                                         }
                                     }
+                                }
+
+                                // check short by user defined duration
+                                $extraLogTxt = '';
+                                if (($result == false) && (isset($item->contentDetails))) {
+                                    Minz_Log::debug('YouTubeChannel2RssFeed-isShort: contentDetails is set');
+                                    if (isset($item->contentDetails->duration) && is_numeric($item->contentDetails->duration)) {
+                                        Minz_Log::debug('YouTubeChannel2RssFeed-isShort: duration is set and numeric');
+                                        $ytDuration = intval($item->contentDetails->duration);
+                                        $extraLogTxt = '('.strval($ytDuration).'<'.strval($shortDuration).')';
+                                        if ($ytDuration < $shortDuration) {
+                                            Minz_Log::debug('YouTubeChannel2RssFeed-isShort: THIS IS A SHORT (by duration)'.$extraLogTxt);
+                                            $result = true;
+                                        }
+                                    }
+                                }
+
+                                if ($result == false) {
+                                    Minz_Log::debug('YouTubeChannel2RssFeed-isShort: THIS IS NO SHORT'.$extraLogTxt);
                                 }
                                 break; // video was found => exit 'foreach'
                             }
@@ -199,7 +229,7 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
             Minz_Log::error('YouTubeChannel2RssFeed-isShort: ' . $e->getMessage());
         }
 
-        Minz_Log::debug('YouTubeChannel2RssFeed-isShort: isShort - END - result = ' . var_export($result, true));
+        Minz_Log::debug('YouTubeChannel2RssFeed-isShort: isShort - END - result = ' . ($result ? 'true' : 'false'));
         return $result;
     }
 }

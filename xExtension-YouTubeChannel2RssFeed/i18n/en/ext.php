@@ -15,6 +15,10 @@ return array(
             'bad_freshrss' => '`YouTubeChannel2RssFeed`required at least FreshRSS version `%s`. (You use FreshRSS version `%s`)',
         ),
         'shorts' => array(
+            'duration' => array(
+                'label' => 'Duration in seconds',
+                'hint' => 'If you set a duration greater than 0, all shorter videos will be identified as short, even if YouTube says it is not short.',
+            ),
             'label' =>  'YouTube Shorts',
             'hint' => 'This setting is only taken if an instance URL is stored. If none is deposited, shorts are permitted',
             'options' => array(

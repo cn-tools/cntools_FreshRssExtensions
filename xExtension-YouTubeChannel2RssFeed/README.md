@@ -51,6 +51,8 @@ http://youtube-operational-api:80
 
 In addition, YT-OAPI makes it possible to identify YouTube shorts. Therefore, there is an option in the settings to mark these YouTube shorts as readed when the RSS article is received, or not to save it in the database at all. In order to be able to track it, a log is written into FreshRSS LOG file in both of these cases.
 
+There is also a setting to declare YouTube videos as short based on their duration.
+
 #### Default configuration for YouTube shorts
 
 Add YouTube shorts into database without any restcritions or changes.
@@ -71,6 +73,10 @@ To install an extension, download the extension archive first and extract it on 
 Extensions must be in the ./extensions directory of your FreshRSS installation.
 
 ## Change log
+
+### v0.6.1-alpha (2024-05-29)
+
+- Add an option to also interpret short YouTube videos as 'short'
 
 ### v0.6.0-alpha (2024-05-06)
 

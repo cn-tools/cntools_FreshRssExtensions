@@ -15,6 +15,10 @@ return array(
             'bad_freshrss' => 'Für "YouTubeChannel2RssFeed" ist mindestens die FreshRSS-Version `%s` erforderlich. (Sie verwenden die FreshRSS-Version `%s`)',
         ),
         'shorts' => array(
+            'duration' => array(
+                'label' => 'Dauer in Sekunden',
+                'hint' => 'Wenn Sie eine Dauer größer als 0 festlegen, werden alle kürzeren Videos als Short idetifiziert, selbst wenn es laut YouTube kein Short ist.',
+            ),
             'label' =>  'YouTube Shorts',
             'hint' => 'Diese Einstellung wird nur berücksichtigt, wenn eine Instanz-URL hinterlegt ist. Ist keine hinterlegt, werden Shorts erlaubt',
             'options' => array(
