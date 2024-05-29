@@ -17,20 +17,20 @@
     </div>
 
     <div class="form-group">
+        <label class="group-name" for="short_duration"><?= _t('ext.YouTubeChannel2RssFeed.shorts.duration.label'); ?></label>
+        <div class="group-controls">
+            <input type="number" name="short_duration" id="short_duration" value="<?= $this->getShortDuration(); ?>">
+            <br /><span><?= _t('ext.YouTubeChannel2RssFeed.shorts.duration.hint') ?></span>
+        </div>
+    </div>
+
+    <div class="form-group">
         <label class="group-name" for="3rd_party_url"><?php echo _t('ext.YouTubeChannel2RssFeed.3rd_party.url'); ?></label>
         <div class="group-controls">
             <input type="url" name="3rd_party_url" id="3rd_party_url" placeholder="Ex: https://yt.lemnoslife.com" value="<?php echo FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed["3rd_party_url"]; ?>">
             <br /><span><?= _t('ext.YouTubeChannel2RssFeed.3rd_party.hint') ?></span>
             <br /><span><?= _t('ext.YouTubeChannel2RssFeed.3rd_party.instance') ?> <a href="https://github.com/Benjamin-Loison/YouTube-operational-API" target="_blank">https://github.com/Benjamin-Loison/YouTube-operational-API</a></span>
             <br /><br /><span><?= _t('ext.YouTubeChannel2RssFeed.3rd_party.help.text') ?> <a href="https://github.com/cn-tools/cntools_FreshRssExtensions/tree/master/xExtension-YouTubeChannel2RssFeed#documentation" target="_blank"><?= _t('ext.YouTubeChannel2RssFeed.3rd_party.help.lnk_txt') ?></a></span>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="group-name" for="short_duration"><?= _t('ext.YouTubeChannel2RssFeed.shorts.duration.label'); ?></label>
-        <div class="group-controls">
-            <input type="number" name="short_duration" id="short_duration" value="<?= $this->getShortDuration(); ?>">
-            <br /><span><?= _t('ext.YouTubeChannel2RssFeed.shorts.duration.hint') ?></span>
         </div>
     </div>
 
