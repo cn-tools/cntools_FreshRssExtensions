@@ -10,8 +10,8 @@
         <div class="group-controls">
             <select name="shorts" id="shorts">
                 <option value="0" title="<?php echo _t('ext.YouTubeChannel2RssFeed.shorts.options.default.title'); ?>"><?php echo _t('ext.YouTubeChannel2RssFeed.shorts.options.default.text'); ?></option>
-                <option value="block"<?= FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed["shorts"] == 'block' ? ' selected="selected"' : '' ?> title="<?php echo _t('ext.YouTubeChannel2RssFeed.shorts.options.block.title'); ?>"><?php echo _t('ext.YouTubeChannel2RssFeed.shorts.options.block.text'); ?></option>
-                <option value="mark_as_read"<?= FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed["shorts"] == 'mark_as_read' ? ' selected="selected"' : '' ?> title="<?php echo _t('ext.YouTubeChannel2RssFeed.shorts.options.mark_as_read.title'); ?>"><?php echo _t('ext.YouTubeChannel2RssFeed.shorts.options.mark_as_read.text'); ?></option>
+                <option value="block"<?= $this->getConfigValueByKeyWithDef('shorts', '') == 'block' ? ' selected="selected"' : '' ?> title="<?php echo _t('ext.YouTubeChannel2RssFeed.shorts.options.block.title'); ?>"><?php echo _t('ext.YouTubeChannel2RssFeed.shorts.options.block.text'); ?></option>
+                <option value="mark_as_read"<?= $this->getConfigValueByKeyWithDef('shorts', '') == 'mark_as_read' ? ' selected="selected"' : '' ?> title="<?php echo _t('ext.YouTubeChannel2RssFeed.shorts.options.mark_as_read.title'); ?>"><?php echo _t('ext.YouTubeChannel2RssFeed.shorts.options.mark_as_read.text'); ?></option>
             </select>
         </div>
     </div>
@@ -27,7 +27,7 @@
     <div class="form-group">
         <label class="group-name" for="3rd_party_url"><?php echo _t('ext.YouTubeChannel2RssFeed.3rd_party.url'); ?></label>
         <div class="group-controls">
-            <input type="url" name="3rd_party_url" id="3rd_party_url" placeholder="Ex: https://yt.lemnoslife.com" value="<?php echo FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed["3rd_party_url"]; ?>">
+            <input type="url" name="3rd_party_url" id="3rd_party_url" placeholder="Ex: https://yt.lemnoslife.com" value="<?= $this->getThirdPartyUrl(); ?>">
             <br /><span><?= _t('ext.YouTubeChannel2RssFeed.3rd_party.hint') ?></span>
             <br /><span><?= _t('ext.YouTubeChannel2RssFeed.3rd_party.instance') ?> <a href="https://github.com/Benjamin-Loison/YouTube-operational-API" target="_blank">https://github.com/Benjamin-Loison/YouTube-operational-API</a></span>
             <br /><br /><span><?= _t('ext.YouTubeChannel2RssFeed.3rd_party.help.text') ?> <a href="https://github.com/cn-tools/cntools_FreshRssExtensions/tree/master/xExtension-YouTubeChannel2RssFeed#documentation" target="_blank"><?= _t('ext.YouTubeChannel2RssFeed.3rd_party.help.lnk_txt') ?></a></span>

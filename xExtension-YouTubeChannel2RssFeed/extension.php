@@ -47,8 +47,49 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
         }
     }
 
+    private function configKeyExists($key):bool {
+        Minz_Log::debug('YouTubeChannel2RssFeed-configKeyExists: START');
+        $result = false;
+        if ($key != '') {
+            Minz_Log::debug('YouTubeChannel2RssFeed-configKeyExists: key=' . $key);
+            if (null !== FreshRSS_Context::$user_conf) {
+                Minz_Log::debug('YouTubeChannel2RssFeed-configKeyExists: user_conf available');
+                if (null !== FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed) {
+                    Minz_Log::debug('YouTubeChannel2RssFeed-configKeyExists: YouTubeChannel2RssFeed available');
+                    if (is_array(FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed) ) {
+                        Minz_Log::debug('YouTubeChannel2RssFeed-configKeyExists: YouTubeChannel2RssFeed is a array');
+                        if (array_key_exists($key, FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed)) {
+                            Minz_Log::debug('YouTubeChannel2RssFeed-configKeyExists: key in array found');
+                            $result = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        Minz_Log::debug('YouTubeChannel2RssFeed-configKeyExists: END result=' . ($result ? 'found' : 'not found'));
+        return $result;
+    }
+
+    public function getConfigValueByKeyWithDef($key, $def) {
+        Minz_Log::debug('YouTubeChannel2RssFeed-getConfigValueByKeyAsStr: START');
+        $value = $def;
+        if ($this->configKeyExists($key) == true) {
+            $value = FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed[$key];
+        }
+
+        Minz_Log::debug('YouTubeChannel2RssFeed-getConfigValueByKeyAsStr: value=' . var_export($value, true));
+        return $value;
+    }
+
+    public function getThirdPartyUrl():string {
+        Minz_Log::debug('YouTubeChannel2RssFeed-getThirdPartyUrl: START');
+        return $this->getConfigValueByKeyWithDef('3rd_party_url', '');
+    }
+
     public function getShortDuration():int {
-        return (array_key_exists('short_duration', FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed)) ? intval(FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed["short_duration"]) : 0;
+        Minz_Log::debug('YouTubeChannel2RssFeed-getShortDuration: START');
+        return intval($this->getConfigValueByKeyWithDef('short_duration', 0));
     }
 
     public function CntYTRssHookCheckURL($url) {
@@ -73,7 +114,7 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
                     return 'https://www.youtube.com/feeds/videos.xml?playlist_id=' . $matches[2];
                 }
 
-                $extUrl = FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed["3rd_party_url"];
+                $extUrl = $this->getThirdPartyUrl();
                 if ($extUrl != ''){
                     if (preg_match('#^https?://(www\.|)youtube\.com/([\@0-9a-zA-Z_-]{1,60})#', $url, $matches) === 1) {
                         $origAllowUrlFopen = ini_get('allow_url_fopen');
@@ -108,15 +149,15 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
         try {
             if ((is_object($entry)) && (strpos($entry->guid(), self::CNT_YT_VIDEO) !== false)) {
                 Minz_Log::debug('YouTubeChannel2RssFeed-EntryBeforeInsert - isYT: ' . serialize($entry));
-                $externalUrl = strval(FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed["3rd_party_url"]);
-                if ($externalUrl != '') {
+                $extUrl = $this->getThirdPartyUrl();
+                if ($extUrl != '') {
                     $shorts = strtolower(strval(FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed["shorts"]));
                     Minz_Log::debug('YouTubeChannel2RssFeed-EntryBeforeInsert: short-content = ' . $shorts);
 
                     if ($shorts != '0') {
                         $ytID = substr($entry->guid(), strlen(self::CNT_YT_VIDEO));
                         Minz_Log::debug('YouTubeChannel2RssFeed-EntryBeforeInsert: before check isShort (id=' . $ytID . ')');
-                        if (self::isShort($entry, $externalUrl, $ytID) == true) {
+                        if (self::isShort($entry, $extUrl, $ytID) == true) {
                             switch ($shorts) {
                                 case "block":
                                     Minz_Log::debug('YouTubeChannel2RssFeed-EntryBeforeInsert: block short');
