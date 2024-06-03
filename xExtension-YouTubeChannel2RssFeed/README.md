@@ -47,7 +47,7 @@ Based on the example above, you need to enter the following URL in the settings 
 http://youtube-operational-api:80
 ```
 
-### Detect YouTube shorts
+### Detect YouTube shorts (by duration too)
 
 In addition, YT-OAPI makes it possible to identify YouTube shorts. Therefore, there is an option in the settings to mark these YouTube shorts as readed when the RSS article is received, or not to save it in the database at all. In order to be able to track it, a log is written into FreshRSS LOG file in both of these cases.
 
