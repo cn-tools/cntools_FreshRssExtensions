@@ -39,6 +39,7 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
             $config = [
                 '3rd_party_url' => rtrim(Minz_Request::paramString('3rd_party_url', ''), '/'),
                 'shorts' => Minz_Request::paramString('shorts', ''),
+                'short_duration' => Minz_Request::paramString('short_duration', 0),
             ];
 
             FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed = $config;
@@ -46,7 +47,52 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
         }
     }
 
-    public static function CntYTRssHookCheckURL($url) {
+    private function configKeyExists($key):bool {
+        Minz_Log::debug('YouTubeChannel2RssFeed-configKeyExists: START');
+        $result = false;
+        if ($key != '') {
+            Minz_Log::debug('YouTubeChannel2RssFeed-configKeyExists: key=' . $key);
+            if (null !== FreshRSS_Context::$user_conf) {
+                Minz_Log::debug('YouTubeChannel2RssFeed-configKeyExists: user_conf available');
+                if (null !== FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed) {
+                    Minz_Log::debug('YouTubeChannel2RssFeed-configKeyExists: YouTubeChannel2RssFeed available');
+                    if (is_array(FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed) ) {
+                        Minz_Log::debug('YouTubeChannel2RssFeed-configKeyExists: YouTubeChannel2RssFeed is a array');
+                        if (array_key_exists($key, FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed)) {
+                            Minz_Log::debug('YouTubeChannel2RssFeed-configKeyExists: key in array found');
+                            $result = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        Minz_Log::debug('YouTubeChannel2RssFeed-configKeyExists: END result=' . ($result ? 'found' : 'not found'));
+        return $result;
+    }
+
+    public function getConfigValueByKeyWithDef($key, $def) {
+        Minz_Log::debug('YouTubeChannel2RssFeed-getConfigValueByKeyAsStr: START');
+        $value = $def;
+        if ($this->configKeyExists($key) == true) {
+            $value = FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed[$key];
+        }
+
+        Minz_Log::debug('YouTubeChannel2RssFeed-getConfigValueByKeyAsStr: value=' . var_export($value, true));
+        return $value;
+    }
+
+    public function getThirdPartyUrl():string {
+        Minz_Log::debug('YouTubeChannel2RssFeed-getThirdPartyUrl: START');
+        return $this->getConfigValueByKeyWithDef('3rd_party_url', '');
+    }
+
+    public function getShortDuration():int {
+        Minz_Log::debug('YouTubeChannel2RssFeed-getShortDuration: START');
+        return intval($this->getConfigValueByKeyWithDef('short_duration', 0));
+    }
+
+    public function CntYTRssHookCheckURL($url) {
         Minz_Log::debug('YouTubeChannel2RssFeed-CntYTRssHookCheckURL: START - ' . $url);
         if (stripos($url, self::CNT_YT_FEEDURL) === false) {
             $origUrl = $url;
@@ -68,7 +114,7 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
                     return 'https://www.youtube.com/feeds/videos.xml?playlist_id=' . $matches[2];
                 }
 
-                $extUrl = FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed["3rd_party_url"];
+                $extUrl = $this->getThirdPartyUrl();
                 if ($extUrl != ''){
                     if (preg_match('#^https?://(www\.|)youtube\.com/([\@0-9a-zA-Z_-]{1,60})#', $url, $matches) === 1) {
                         $origAllowUrlFopen = ini_get('allow_url_fopen');
@@ -98,20 +144,20 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
         return $url;
     }
 
-    public static function CntYTRssHookEntryBeforeInsert($entry) {
+    public function CntYTRssHookEntryBeforeInsert($entry) {
         Minz_Log::debug('YouTubeChannel2RssFeed-EntryBeforeInsert - START');
         try {
             if ((is_object($entry)) && (strpos($entry->guid(), self::CNT_YT_VIDEO) !== false)) {
                 Minz_Log::debug('YouTubeChannel2RssFeed-EntryBeforeInsert - isYT: ' . serialize($entry));
-                $externalUrl = strval(FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed["3rd_party_url"]);
-                if ($externalUrl != '') {
+                $extUrl = $this->getThirdPartyUrl();
+                if ($extUrl != '') {
                     $shorts = strtolower(strval(FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed["shorts"]));
                     Minz_Log::debug('YouTubeChannel2RssFeed-EntryBeforeInsert: short-content = ' . $shorts);
 
                     if ($shorts != '0') {
                         $ytID = substr($entry->guid(), strlen(self::CNT_YT_VIDEO));
                         Minz_Log::debug('YouTubeChannel2RssFeed-EntryBeforeInsert: before check isShort (id=' . $ytID . ')');
-                        if (self::isShort($entry, $externalUrl, $ytID) == true) {
+                        if (self::isShort($entry, $extUrl, $ytID) == true) {
                             switch ($shorts) {
                                 case "block":
                                     Minz_Log::debug('YouTubeChannel2RssFeed-EntryBeforeInsert: block short');
@@ -144,7 +190,7 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
         return $entry;
     }
 
-    private static function isShort($entry, $extUrl, $ytID): bool {
+    private function isShort($entry, $extUrl, $ytID): bool {
         Minz_Log::debug('YouTubeChannel2RssFeed-isShort: START');
         $result = false;
         try {
@@ -154,10 +200,17 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
 
                 $origAllowUrlFopen = ini_get('allow_url_fopen');
 
+                $part = 'short';
+
+                $shortDuration = $this->getShortDuration();
+                if ($shortDuration > 0) {
+                    $part .= ',contentDetails';
+                }
+
                 try {
                     Minz_Log::debug('YouTubeChannel2RssFeed-isShort: fOpen - start');
                     ini_set("allow_url_fopen", 1);
-                    $json = file_get_contents($extUrl . '/videos?part=short&id=' . $ytID);
+                    $json = file_get_contents($extUrl . '/videos?part=' . $part . '&id=' . $ytID);
                     Minz_Log::debug('YouTubeChannel2RssFeed-isShort: fOpen - data: ' . serialize($json));
                 } finally {
                     ini_set("allow_url_fopen", $origAllowUrlFopen);
@@ -175,18 +228,36 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
                             Minz_Log::debug('YouTubeChannel2RssFeed-isShort: id is set');
                             if ($item->id == $ytID) {
                                 Minz_Log::debug('YouTubeChannel2RssFeed-isShort: id found: ' . $ytID);
-                                if (isset($item->short)) {
+
+                                // check short directly
+                                if (($result == false) && (isset($item->short))) {
                                     Minz_Log::debug('YouTubeChannel2RssFeed-isShort: short is set');
                                     if (isset($item->short->available)) {
                                         Minz_Log::debug('YouTubeChannel2RssFeed-isShort: available is set');
                                         if ($item->short->available == true) {
                                             $result = true;
                                             Minz_Log::debug('YouTubeChannel2RssFeed-isShort: THIS IS A SHORT');
-                                        } else {
-                                            $result = false;
-                                            Minz_Log::debug('YouTubeChannel2RssFeed-isShort: THIS IS NO SHORT');
                                         }
                                     }
+                                }
+
+                                // check short by user defined duration
+                                $extraLogTxt = '';
+                                if (($result == false) && (isset($item->contentDetails))) {
+                                    Minz_Log::debug('YouTubeChannel2RssFeed-isShort: contentDetails is set');
+                                    if (isset($item->contentDetails->duration) && is_numeric($item->contentDetails->duration)) {
+                                        Minz_Log::debug('YouTubeChannel2RssFeed-isShort: duration is set and numeric');
+                                        $ytDuration = intval($item->contentDetails->duration);
+                                        $extraLogTxt = '('.strval($ytDuration).'<'.strval($shortDuration).')';
+                                        if ($ytDuration < $shortDuration) {
+                                            Minz_Log::debug('YouTubeChannel2RssFeed-isShort: THIS IS A SHORT (by duration)'.$extraLogTxt);
+                                            $result = true;
+                                        }
+                                    }
+                                }
+
+                                if ($result == false) {
+                                    Minz_Log::debug('YouTubeChannel2RssFeed-isShort: THIS IS NO SHORT'.$extraLogTxt);
                                 }
                                 break; // video was found => exit 'foreach'
                             }
@@ -199,7 +270,7 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
             Minz_Log::error('YouTubeChannel2RssFeed-isShort: ' . $e->getMessage());
         }
 
-        Minz_Log::debug('YouTubeChannel2RssFeed-isShort: isShort - END - result = ' . var_export($result, true));
+        Minz_Log::debug('YouTubeChannel2RssFeed-isShort: isShort - END - result = ' . ($result ? 'true' : 'false'));
         return $result;
     }
 }

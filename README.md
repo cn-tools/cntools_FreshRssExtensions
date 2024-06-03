@@ -33,7 +33,7 @@ Have a look into the [DOCUMENTATION](https://github.com/cn-tools/cntools_FreshRs
 
 ### YouTubeChannel2RssFeed
 
-Transfer on the fly a YouTube URL into an RSS Feed\
+Transfer on the fly a YouTube URL into an RSS Feed and detect YouTube shorts\
 Have a look into the [DOCUMENTATION](https://github.com/cn-tools/cntools_FreshRssExtensions/tree/master/xExtension-YouTubeChannel2RssFeed#documentation)
 
 ## Translations
