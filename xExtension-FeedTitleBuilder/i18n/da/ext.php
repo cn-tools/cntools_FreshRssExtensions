@@ -1,0 +1,30 @@
+<?php
+
+return array(
+	'FeedTitleBuilder' => array(
+		'label4Template' => 'Feed titel skabelon',
+		'helping' => 'Der er nogle særlige sektioner, der giver dig mulighed for at tilpasse din personlige feed titel.',
+		'help4origtitle' => 'Brug denne kode til at definere, hvor den oprindelige titel på dette feed skal vises',
+		'help4date' => 'Med denne kode kan du tilføje dag dato i dit foretrukne format. Brug din foretrukne web søgemaskine til at finde ud af, hvilke parametre der er tilgængelige i den dato funktion i PHP.<br />Kig efter detaljer: <a href="https://www.php.net/manual/en/function.date.php" target="_blank" rel="noopener nofollow">https://www.php.net/manual/en/function.date.php</a><br />Eksempel: {date}ymd{/date} => 20190401',
+		'help4phpparseurl' => 'URL\'en vil blive opsplittet med PHP-funktionen <code>parse_url</code> , og du kan få den specifikke værdi af resultatet.<br />Kig efter detaljer: <a href="https://www.php.net/manual/en/function.parse-url.php" target="_blank" rel="noopener nofollow">https://www.php.net/manual/en/function.parse-url.php</a>',
+		'help4phpparseurlvalues' => 'Følgende specielle ord er tilgængelige:',
+		'help4phpparseurlschema' => 'Du får \'HTTP\', \'HTTPS\', \'FTP\' eller hinanden. Ex. \'HTTPS\'',
+		'help4phpparseurlhost' => 'I eksemplet får du \'github.com\'.',
+		'help4phpparseurlport' => 'Du vil få den port som er i den definerede URL.',
+		'help4phpparseurluser' => 'Du vil få den bruger, der er i den angivne URL.',
+		'help4phpparseurlpass' => 'Du vil få den adgangskode, der er i den angivne URL.',
+		'help4phpparseurlpath' => 'I eksemplet får du \'/FreshRSS/FreshRSS\'.',
+		'help4phpparseurlquery' => 'Du får teksten mellem \'?\' og \'#\'.',
+		'help4phpparseurlfragment' => 'Du vil få teksten efter \'#\'.',
+		'help4phpparseurlhostspecial' => 'Måske giver nøgleordet \'vært\' dig for meget, så du kan bruge følgende specielle ord. Disse er de af \'.\' (punktum) adskilte værdier i \'vært\'.',
+		'help4phpparseurlhostsub' => 'Du vil få den fulde tekst, før den næstsidste prik.',
+		'help4phpparseurlhostname' => 'Du vil få teksten mellem næstsidste og sidste prik.',
+		'help4phpparseurlhosttld' => 'Du vil få teksten efter den sidste prik.',
+		'example' => 'Eksempel',
+		'example_template_code' => 'Skabelon kode:',
+		'example_url' => 'URL:',
+		'example_title' => 'Genereret feed titel:',
+		'info' => 'Information:',
+		'infodesc' => 'Hvis skabelonen er tom, vil du få den oprindelige titel på det tilføjede feed!',
+	),
+);
