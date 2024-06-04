@@ -1,0 +1,30 @@
+<?php
+
+return array(
+	'FeedTitleBuilder' => array(
+		'label4Template' => 'Șablon titlu flux',
+		'helping' => 'Există câteva secțiuni speciale care vă permit să vă personalizați titlul pentru fluxurile personale.',
+		'help4origtitle' => 'Utilizați acest cod pentru a defini unde ar trebui afișat titlul original al acestui flux',
+		'help4date' => 'Cu acest cod poți adăuga data zilei în formatul tău preferat. Foloseste motorul tau de cautare web favorit pentru a afla parametrii disponibili in functia de data din PHP.<br />Caută detalii: <a href="https://www.php.net/manual/en/function.date.php" target="_blank" rel="noopener nofollow">https://www.php.net/manual/en/function.date.php</a><br />Exemplu: {date}ymd{/date} => 20190401',
+		'help4phpparseurl' => 'URL-ul va fi divizat cu funcția PHP <code>parse_url</code> și puteți obține valoarea specifică a rezultatului.<br />Caută detalii: <a href="https://www.php.net/manual/en/function.parse-url.php" target="_blank" rel="noopener nofollow">https://www.php.net/manual/en/function.parse-url.php</a>',
+		'help4phpparseurlvalues' => 'Sunt disponibile următoarele cuvinte speciale:',
+		'help4phpparseurlschema' => 'Vei primi \'HTTP\', \'HTTPS\', \'FTP\' sau unul altul. Ex. \'HTTPS\'',
+		'help4phpparseurlhost' => 'În exemplul pe care îl veți primi \'github.com\'.',
+		'help4phpparseurlport' => 'Vei obține portul care se află în URL-ul definit.',
+		'help4phpparseurluser' => 'Veți obține utilizatorul care se află în URL-ul definit.',
+		'help4phpparseurlpass' => 'Veți obține parola care este în URL-ul definit.',
+		'help4phpparseurlpath' => 'În exemplul vei primi \'/FreshRSS/FreshRSS\'.',
+		'help4phpparseurlquery' => 'Vei primi textul între \'?\' și \'#\'.',
+		'help4phpparseurlfragment' => 'Vei primi textul după \'#\'.',
+		'help4phpparseurlhostspecial' => 'Poate cuvântul cheie "gazdă" îți dă prea multe, ca să poți folosi următoarele cuvinte speciale. Acestea sunt prin \'.\' (punct) separă valorile normale de \'gazdă\'.',
+		'help4phpparseurlhostsub' => 'Veți obține textul complet înainte de penultimul punct.',
+		'help4phpparseurlhostname' => 'Vei obține textul dintre penultimul punct și ultimul punct.',
+		'help4phpparseurlhosttld' => 'Vei obține textul după ultimul punct.',
+		'example' => 'Exemplu',
+		'example_template_code' => 'Codul șablonului:',
+		'example_url' => 'URL:',
+		'example_title' => 'Titlu feed generat:',
+		'info' => 'Informatii:',
+		'infodesc' => 'Dacă șablonul este gol, veți obține titlul original al fluxului adăugat!',
+	),
+);
