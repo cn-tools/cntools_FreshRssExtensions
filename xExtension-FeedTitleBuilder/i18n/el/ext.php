@@ -1,0 +1,30 @@
+<?php
+
+return array(
+	'FeedTitleBuilder' => array(
+		'label4Template' => 'Πρότυπο τίτλου ροής',
+		'helping' => 'Υπάρχουν μερικά ειδικά τμήματα που σας επιτρέπουν να προσαρμόσετε τον προσωπικό σας τίτλο τροφοδοσίας.',
+		'help4origtitle' => 'Χρησιμοποιήστε αυτόν τον κώδικα για να ορίσετε που θα εμφανίζεται ο αρχικός τίτλος αυτής της ροής',
+		'help4date' => 'Με αυτόν τον κώδικα μπορείτε να προσθέσετε την ημερομηνία ημέρας στην αγαπημένη σας μορφή. Χρησιμοποιήστε το αγαπημένο σας μηχανή αναζήτησης ιστού για να μάθετε ποιες παράμετροι είναι διαθέσιμες στη λειτουργία ημερομηνίας στην PHP.<br />Αναζητήστε λεπτομέρειες: <a href="https://www.php.net/manual/en/function.date.php" target="_blank" rel="noopener nofollow">https://www.php.net/manual/en/function.date.php</a><br />Παράδειγμα: {date}ymd{/date} => 20190401',
+		'help4phpparseurl' => 'Η διεύθυνση URL θα διαιρεθεί με τη λειτουργία PHP <code>parse_url</code> και μπορείτε να πάρετε τη συγκεκριμένη τιμή του αποτελέσματος.<br />Αναζητήστε λεπτομέρειες: <a href="https://www.php.net/manual/en/function.parse-url.php" target="_blank" rel="noopener nofollow">https://www.php.net/manual/en/function.parse-url.php</a>',
+		'help4phpparseurlvalues' => 'Οι ακόλουθες ειδικές λέξεις είναι διαθέσιμες:',
+		'help4phpparseurlschema' => 'Θα λάβετε το \'HTTP\', το \'HTTPS\', το \'FTP\' ή το άλλο. Για παράδειγμα. \'HTTPS\'',
+		'help4phpparseurlhost' => 'Στο παράδειγμα θα λάβετε το \'github.com\'.',
+		'help4phpparseurlport' => 'Θα πάρετε τη θύρα που είναι στο URL που έχει οριστεί.',
+		'help4phpparseurluser' => 'Θα λάβετε το χρήστη που είναι στο URL που έχει οριστεί.',
+		'help4phpparseurlpass' => 'Θα λάβετε τον κωδικό πρόσβασης που είναι στο URL που έχει οριστεί.',
+		'help4phpparseurlpath' => 'Στο παράδειγμα θα λάβετε το \'/FreshRSS/FreshRSS\'.',
+		'help4phpparseurlquery' => 'Θα λάβετε το κείμενο μεταξύ \'?\' και \'#\'.',
+		'help4phpparseurlfragment' => 'Θα λάβετε το κείμενο μετά το \'#\'.',
+		'help4phpparseurlhostspecial' => 'Ίσως η λέξη κλειδί «host» σας δίνει πάρα πολλά, ώστε να μπορείτε να χρησιμοποιήσετε τις ακόλουθες ειδικές λέξεις. Αυτές είναι οι διαχωρισμένες με \'\'. (τελεία) τιμές \'host\'.',
+		'help4phpparseurlhostsub' => 'Θα πάρετε το πλήρες κείμενο πριν από την προτελευταία τελεία.',
+		'help4phpparseurlhostname' => 'Θα πάρετε το κείμενο μεταξύ του προτελευταίου και της τελευταίας τελείας.',
+		'help4phpparseurlhosttld' => 'Θα λάβετε το κείμενο μετά την τελευταία τελεία.',
+		'example' => 'Παράδειγμα',
+		'example_template_code' => 'Κωδικός προτύπου:',
+		'example_url' => 'URL:',
+		'example_title' => 'Δημιουργημένος τίτλος ροής:',
+		'info' => 'Πληροφορίες:',
+		'infodesc' => 'Αν το πρότυπο είναι άδειο, θα λάβετε τον αρχικό τίτλο της προσθήκης ροής!',
+	),
+);
