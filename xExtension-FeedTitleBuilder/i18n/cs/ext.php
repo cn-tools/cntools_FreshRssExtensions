@@ -1,0 +1,30 @@
+<?php
+
+return array(
+	'FeedTitleBuilder' => array(
+		'label4Template' => 'Šablona titulku kanálu',
+		'helping' => 'Existují některé speciální oddíly, které vám umožní přizpůsobit svůj vlastní název kanálu.',
+		'help4origtitle' => 'Použijte tento kód pro definování, kde by měl být uveden původní název tohoto kanálu',
+		'help4date' => 'Pomocí tohoto kódu můžete přidat datum ve vašem oblíbeném formátu. Použijte svůj oblíbený vyhledávač pro zjištění, které parametry jsou dostupné ve funkci data v PHP.<br />Podívejte se na podrobnosti: <a href="https://www.php.net/manual/en/function.date.php" target="_blank" rel="noopener nofollow">https://www.php.net/manual/en/function.date.php</a><br />Příklad: {date}ymd{/date} => 20190401',
+		'help4phpparseurl' => 'URL bude rozdělena s PHP funkcí <code>parse_url</code> a můžete získat specifickou hodnotu výsledku.<br />Podívejte se na podrobnosti: <a href="https://www.php.net/manual/en/function.parse-url.php" target="_blank" rel="noopener nofollow">https://www.php.net/manual/en/function.parse-url.php</a>',
+		'help4phpparseurlvalues' => 'K dispozici jsou následující speciální slova:',
+		'help4phpparseurlschema' => 'Získáte \'HTTP\', \'HTTPS\', \'FTP\' nebo jeden druhého. Např. \'HTTPS\'',
+		'help4phpparseurlhost' => 'V příkladu dostanete "github.com".',
+		'help4phpparseurlport' => 'Dostanete port, který je v URL definovaný.',
+		'help4phpparseurluser' => 'Dostanete uživatele, který je v URL definovaný.',
+		'help4phpparseurlpass' => 'Obdržíte heslo, které je definováno v URL adrese.',
+		'help4phpparseurlpath' => 'V příkladu získáte "/FreshRSS/FreshRSS".',
+		'help4phpparseurlquery' => 'Text dostanete mezi "?" a "#".',
+		'help4phpparseurlfragment' => 'Text dostanete za "#".',
+		'help4phpparseurlhostspecial' => 'Možná, že klíčové slovo "host" vám dává příliš mnoho, takže můžete použít následující speciální slova. Toto jsou hodnoty oddělené \'.\' (tečkou) \'host\'.',
+		'help4phpparseurlhostsub' => 'Celý text dostanete před předposlední tečkou.',
+		'help4phpparseurlhostname' => 'Text dostanete mezi předposlední a poslední tečkou.',
+		'help4phpparseurlhosttld' => 'Text získáte po posledním tečce.',
+		'example' => 'Příklad',
+		'example_template_code' => 'Kód šablony:',
+		'example_url' => 'URL:',
+		'example_title' => 'Vygenerovaný název kanálu:',
+		'info' => 'Informace:',
+		'infodesc' => 'Pokud je šablona prázdná, získáte původní název přidaného kanálu!',
+	),
+);

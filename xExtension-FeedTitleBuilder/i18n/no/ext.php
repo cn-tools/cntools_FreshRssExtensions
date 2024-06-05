@@ -1,0 +1,30 @@
+<?php
+
+return array(
+	'FeedTitleBuilder' => array(
+		'label4Template' => 'Feed tittelmal',
+		'helping' => 'Det finnes noen spesielle seksjoner som lar deg tilpasse din personlige feedtittel.',
+		'help4origtitle' => 'Bruk denne koden for å definere hvor originaltittelen på denne feeden skal vises',
+		'help4date' => 'Med denne koden kan du legge til dagens dato i favorittformatet. Bruk din favoritt web søkemotor til å finne ut hvilke parametere som er tilgjengelige i dato-funksjonen i PHP.<br />Se etter detaljer: <a href="https://www.php.net/manual/en/function.date.php" target="_blank" rel="noopener nofollow">https://www.php.net/manual/en/function.date.php</a><br />Eksempel: {date}ymd{/date} => 20190401',
+		'help4phpparseurl' => 'URL-en vil bli splittet med PHP-funksjon <code>parse_url</code> og du kan få den spesifikke verdien av resultatet.<br />Se etter detaljer: <a href="https://www.php.net/manual/en/function.parse-url.php" target="_blank" rel="noopener nofollow">https://www.php.net/manual/en/function.parse-url.php</a>',
+		'help4phpparseurlvalues' => 'Følgende spesialord er tilgjengelige:',
+		'help4phpparseurlschema' => 'Du vil få \'HTTP\', \'HTTPS\', \'FTP\' eller hverandre. Ek. \'HTTPS\'',
+		'help4phpparseurlhost' => 'I eksempelet får du \'github.com\'.',
+		'help4phpparseurlport' => 'Du vil hente porten som er i nettadressen definert.',
+		'help4phpparseurluser' => 'Du vil få brukeren som er i nettadressen definert.',
+		'help4phpparseurlpass' => 'Du får det passordet som er angitt i nettadressen.',
+		'help4phpparseurlpath' => 'I eksempelet vil du få \'/FreshRSS/FreshRSS\'.',
+		'help4phpparseurlquery' => 'Du vil få teksten mellom \'?\' og \'#\'.',
+		'help4phpparseurlfragment' => 'Du vil få teksten etter \'#\'.',
+		'help4phpparseurlhostspecial' => 'Kanskje ordet \'host\' gir deg for mye, så du kan bruke følgende spesialord. Dette er «.\' (prikk) separert verdier «host».',
+		'help4phpparseurlhostsub' => 'Du vil få full tekst før den penultimate punktet.',
+		'help4phpparseurlhostname' => 'Du vil få teksten mellom penultimate og siste punktum.',
+		'help4phpparseurlhosttld' => 'Du vil få teksten etter siste punktet.',
+		'example' => 'Eksempel',
+		'example_template_code' => 'Mal kode:',
+		'example_url' => 'Url:',
+		'example_title' => 'Generert fôr tittel:',
+		'info' => 'Informasjon:',
+		'infodesc' => 'Hvis malen er tom, vil du få det originale navnet på den oppgitte feeden!',
+	),
+);

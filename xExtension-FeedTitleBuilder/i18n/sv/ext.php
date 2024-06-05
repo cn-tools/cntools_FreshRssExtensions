@@ -1,0 +1,30 @@
+<?php
+
+return array(
+	'FeedTitleBuilder' => array(
+		'label4Template' => 'Mall för flödestitel',
+		'helping' => 'Det finns några speciella avsnitt som gör att du kan anpassa din personliga feed titel.',
+		'help4origtitle' => 'Använd denna kod för att ange var den ursprungliga titeln på detta flöde ska visas',
+		'help4date' => 'Med denna kod kan du lägga till dagdatum i ditt favoritformat. Använd din favorit sökmotor för att ta reda på vilka parametrar som finns tillgängliga i datumfunktionen i PHP.<br />Leta efter detaljer: <a href="https://www.php.net/manual/en/function.date.php" target="_blank" rel="noopener nofollow">https://www.php.net/manual/en/function.date.php</a><br />Exempel: {date}ymd{/date} => 20190401',
+		'help4phpparseurl' => 'URL kommer att delas med PHP-funktionen <code>parse_url</code> och du kan få det specifika värdet av resultatet.<br />Leta efter detaljer: <a href="https://www.php.net/manual/en/function.parse-url.php" target="_blank" rel="noopener nofollow">https://www.php.net/manual/en/function.parse-url.php</a>',
+		'help4phpparseurlvalues' => 'Följande specialord finns tillgängliga:',
+		'help4phpparseurlschema' => 'Du får "HTTP", "HTTPS", "FTP" eller varandra. Ex. "HTTPS"',
+		'help4phpparseurlhost' => 'I exemplet får du \'github.com\'.',
+		'help4phpparseurlport' => 'Du kommer att få den port som finns i URL:en definierad.',
+		'help4phpparseurluser' => 'Du kommer att få den användare som finns i URL:en definierad.',
+		'help4phpparseurlpass' => 'Du kommer att få lösenordet som finns i den angivna webbadressen.',
+		'help4phpparseurlpath' => 'I exemplet får du \'/FreshRSS/FreshRSS\'.',
+		'help4phpparseurlquery' => 'Du kommer att få texten mellan \'?\' och \'#\'.',
+		'help4phpparseurlfragment' => 'Du kommer att få texten efter \'#\'.',
+		'help4phpparseurlhostspecial' => 'Kanske nyckelordet ”värd” ger dig för mycket, så att du kan använda följande speciella ord. Dessa är de av \'.\' (punkt) separerade värden <unk> <unk> av \'värd\'.',
+		'help4phpparseurlhostsub' => 'Du kommer att få fulltext före den näst sista punkten.',
+		'help4phpparseurlhostname' => 'Du kommer att få texten mellan den näst sista och sista punkten.',
+		'help4phpparseurlhosttld' => 'Du kommer att få texten efter den sista punkten.',
+		'example' => 'Exempel',
+		'example_template_code' => 'Mall kod:',
+		'example_url' => 'URL:',
+		'example_title' => 'Genererad flödestitel:',
+		'info' => 'Information:',
+		'infodesc' => 'Om mallen är tom, kommer du att få den ursprungliga titeln på det tillagda flödet!',
+	),
+);
