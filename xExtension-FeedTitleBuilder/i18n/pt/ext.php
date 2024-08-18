@@ -1,0 +1,30 @@
+<?php
+
+return array(
+	'FeedTitleBuilder' => array(
+		'label4Template' => 'Modelo de título do feed',
+		'helping' => 'Existem algumas seções especiais que permitem que você personalize seu título de feed pessoal.',
+		'help4origtitle' => 'Use este código para definir onde o título original deste feed deve ser exibido',
+		'help4date' => 'Com este código, você pode adicionar a data do dia em seu formato favorito. Use seu mecanismo de pesquisa web favorito para descobrir quais parâmetros estão disponíveis na função de data em PHP.<br />Procure por detalhes: <a href="https://www.php.net/manual/en/function.date.php" target="_blank" rel="noopener nofollow">https://www.php.net/manual/en/function.date.php</a><br />Exemplo: {date}ymd{/date} => 20190401',
+		'help4phpparseurl' => 'A URL será dividida com a função PHP <code>parse_url</code> e você pode obter o valor específico do resultado.<br />Procure por detalhes: <a href="https://www.php.net/manual/en/function.parse-url.php" target="_blank" rel="noopener nofollow">https://www.php.net/manual/en/function.parse-url.php</a>',
+		'help4phpparseurlvalues' => 'As seguintes palavras especiais estão disponíveis:',
+		'help4phpparseurlschema' => 'Você receberá \'HTTP\', \'HTTPS\', \'FTP\' ou outro. Ex. \'HTTPS\'',
+		'help4phpparseurlhost' => 'No exemplo você receberá \'github.com\'.',
+		'help4phpparseurlport' => 'Você obterá a porta que está na URL definida.',
+		'help4phpparseurluser' => 'Você receberá o usuário que está na URL definida.',
+		'help4phpparseurlpass' => 'Você receberá a senha que está na URL definida.',
+		'help4phpparseurlpath' => 'No exemplo você obterá \'/FreshRSS/FreshRSS\'.',
+		'help4phpparseurlquery' => 'Você obterá o texto entre \'?\' e \'#\'.',
+		'help4phpparseurlfragment' => 'Você receberá o texto após \'#\'.',
+		'help4phpparseurlhostspecial' => 'Talvez a palavra-chave \'host\' lhe dê demasiado, então você pode usar as seguintes palavras especiais. Estes são os valores separados por \'.\' (ponto) e \'host\' (pontos).',
+		'help4phpparseurlhostsub' => 'Você receberá o texto completo antes do penúltimo ponto.',
+		'help4phpparseurlhostname' => 'Você obterá o texto entre o penúltimo e o último ponto.',
+		'help4phpparseurlhosttld' => 'Você receberá o texto após o último ponto.',
+		'example' => 'Exemplo',
+		'example_template_code' => 'Código do template:',
+		'example_url' => 'URL:',
+		'example_title' => 'Título de feed gerado:',
+		'info' => 'Informação:',
+		'infodesc' => 'Se o template estiver vazio, você obterá o título original do feed adicionado!',
+	),
+);
