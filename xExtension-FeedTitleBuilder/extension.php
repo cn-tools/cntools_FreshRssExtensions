@@ -1,27 +1,30 @@
 <?php
 class FeedTitleBuilderExtension extends Minz_Extension {
-	public static $feedUrl = '';
+    public static $feedUrl = '';
 
-	public function init() {
-		self::$feedUrl = '';
-		$this->registerHook('feed_before_insert', array('FeedTitleBuilderExtension', 'CntBuildTitle'));
-	}
+    /*---------------------------- init ----------------------------*/
+    public function init() {
+        self::$feedUrl = '';
+        $this->registerHook('feed_before_insert', array('FeedTitleBuilderExtension', 'CntBuildTitle'));
+    }
 
-	public function handleConfigureAction() {
-		$this->registerTranslates();
+    /*---------------------------- handleConfigureAction ----------------------------*/
+    public function handleConfigureAction() {
+        $this->registerTranslates();
 
-		if (Minz_Request::isPost()) {
-			$data = array();
-			$data['template'] = Minz_Request::param('feedtitlebuilder_template', '');
-			FreshRSS_Context::$user_conf->feedtitlebuilder = $data;
-			FreshRSS_Context::$user_conf->save();
-		}
-	}
+        if (Minz_Request::isPost()) {
+            $data = array();
+            $data['template'] = Minz_Request::param('feedtitlebuilder_template', '');
+            FreshRSS_Context::$user_conf->feedtitlebuilder = $data;
+            FreshRSS_Context::$user_conf->save();
+        }
+    }
 
-	public static function CntBuildTitle($feed) {
+    /*---------------------------- CntBuildTitle ----------------------------*/
+    public static function CntBuildTitle($feed) {
         try {
             if (is_object($feed) === true) {
-                $lWorkTitle = FreshRSS_Context::$user_conf->feedtitlebuilder["template"];
+                $lWorkTitle = $this->getConfigValueAsStrDef('template', '');
                 if ($lWorkTitle == '') {
                     // do nothing
                 } else {
@@ -37,7 +40,7 @@ class FeedTitleBuilderExtension extends Minz_Extension {
                     $regex = "#{date\b(.*?)\}(.*?){/date}#s";
                     $lWorkTitle = preg_replace_callback($regex, array('FeedTitleBuilderExtension', 'renderTitleBuilderDate'), $lWorkTitle);
 
-                    // send new title to feed
+                    // write new title into feed
                     $feed->_name($lWorkTitle);
                 }
             }
@@ -48,21 +51,26 @@ class FeedTitleBuilderExtension extends Minz_Extension {
         }
     }
 
-	/*---------------------------- renderTitleBuilderPhpParseUrl ----------------------------*/
-	private function renderTitleBuilderPhpParseUrl(&$matches){
-		$urlValues = parse_url(self::$feedUrl);
+    /*---------------------------- renderTitleBuilderPhpParseUrl ----------------------------*/
+    private function renderTitleBuilderPhpParseUrl(&$matches){
+        $urlValues = parse_url(self::$feedUrl);
 
-		$hostValues = explode('.', $urlValues['host']);
-		$urlValues['hosttld'] = array_pop($hostValues);
-		$urlValues['hostname'] = array_pop($hostValues);
-		$urlValues['hostsub'] = implode('.', $hostValues);
+        $hostValues = explode('.', $urlValues['host']);
+        $urlValues['hosttld'] = array_pop($hostValues);
+        $urlValues['hostname'] = array_pop($hostValues);
+        $urlValues['hostsub'] = implode('.', $hostValues);
 
-		return $urlValues[$matches[2]];
-	}
+        return $urlValues[$matches[2]];
+    }
 
-	/*---------------------------- renderTitleBuilderDate ----------------------------*/
-	private function renderTitleBuilderDate(&$matches){
-		return date(trim($matches[2]));
-	}
+    /*---------------------------- renderTitleBuilderDate ----------------------------*/
+    private function renderTitleBuilderDate(&$matches){
+        return date(trim($matches[2]));
+    }
 
+    /*---------------------------- getConfigValueAsStrDef ----------------------------*/
+    public function getConfigValueAsStrDef(string $key, string $def):string {
+        $res = FreshRSS_Context::$user_conf->feedtitlebuilder[$key] ?? $def;
+        return strval($res);
+    }
 }
