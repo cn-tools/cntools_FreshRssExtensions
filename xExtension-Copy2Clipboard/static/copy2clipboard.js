@@ -58,9 +58,7 @@ var cntCopy2Clipboard = {
                 console.error('Trigger:', e.trigger);
                 openNotification(context.extensions.copy2clipboard.messages.bad, 'bad');
             });
-        } else {
-			console.error('FreshRSS - Copy2Clipboard: `cnt_copy2clip_svg_path` not available');
-		}
+        }
     },
 };
 

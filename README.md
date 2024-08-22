@@ -2,7 +2,7 @@
 
 This repository contains my unofficial FreshRSS extensions.
 
-## Available extansions
+## Available extensions
 
 ### BlackList
 
