@@ -25,7 +25,7 @@ YouTube handles URL look like:
 
 If you don't want to use a publicly instance of YT-OAPI you can host your own instance. For example as [Docker container](https://hub.docker.com/r/benjaminloison/youtube-operational-api). For detail informations have a look in the documentation on manufacturer's website.
 
-#### My prefered YAML code for a self hostet Docker container
+#### My prefered YAML code for a self hosted Docker container
 
 ```yaml
 version: "3"
@@ -81,7 +81,7 @@ Extensions must be in the ./extensions directory of your FreshRSS installation.
 ### v0.6.0-alpha (2024-05-06)
 
 - add option window
-- add detection of YouTube handels
+- add detection of YouTube handles
 - add functionallity to detect YouTube shorts
 - add option to mark shorts as read or block it
 
