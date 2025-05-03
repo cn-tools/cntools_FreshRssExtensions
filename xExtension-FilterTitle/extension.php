@@ -58,10 +58,10 @@ class FilterTitleExtension extends Minz_Extension {
                 }
             }
         }
- 
+
         return $entry;
     }
- 
+
     private function isPatternFound(string $title, string $pattern): bool {
         if (1 === preg_match($pattern, $title)) {
             return true;
@@ -70,7 +70,7 @@ class FilterTitleExtension extends Minz_Extension {
         }
         return false;
     }
- 
+
     public function getBlacklistData() {
         if ($this->getSystemConfigurationValue('check_type') == '0') {
             // 20240311 - Until version v0.0.2 there was only blacklist OR whitelist availabe
@@ -79,7 +79,7 @@ class FilterTitleExtension extends Minz_Extension {
             return implode(PHP_EOL, $this->getSystemConfigurationValue('blacklist') ?? []);
         }
     }
- 
+
     public function getWhitelistData() {
         if ($this->getSystemConfigurationValue('check_type') == '1') {
             // 20240311 - Until version v0.0.2 there was only blacklist OR whitelist availabe
