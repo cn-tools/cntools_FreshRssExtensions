@@ -25,7 +25,7 @@ class SendToMyJD2Extension extends Minz_Extension {
             $data['password_plain'] = strval(Minz_Request::param('SendToMyJD2_password', ''));
             $data['sendtestdata'] = strval(Minz_Request::paramString('SendToMyJD2_sendtestdata'));
             $data['device'] = strval(Minz_Request::param('SendToMyJD2_device', ''));
-            $data['patterns'] = array_filter(Minz_Request::paramTextToArray('SendToMyJD2_patterns', []));
+            $data['patterns'] = array_filter(Minz_Request::paramTextToArray('SendToMyJD2_patterns'));
 
             Minz_Log::debug('SendToMyJD2 - handleConfigureAction: data2save=' . var_export($data, true));
 

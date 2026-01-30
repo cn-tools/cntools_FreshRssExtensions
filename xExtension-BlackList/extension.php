@@ -12,7 +12,7 @@ class BlackListExtension extends Minz_Extension {
 
         if (Minz_Request::isPost()) {
             $configuration = [
-                'blacklist_patterns' => Minz_Request::paramTextToArray('blacklist_patterns', []),
+                'blacklist_patterns' => Minz_Request::paramTextToArray('blacklist_patterns'),
             ];
             $this->setSystemConfiguration($configuration);
         }
