@@ -92,6 +92,34 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
         return intval($this->getConfigValueByKeyWithDef('short_duration', 0));
     }
 
+    private function requestApi(string $url): string {
+        // FreshRSS 1.30+ disables the HTTP(S) stream wrappers used by file_get_contents().
+        $curl = curl_init($url);
+        if ($curl === false) {
+            throw new RuntimeException('Could not initialize the YouTube API request');
+        }
+
+        try {
+            curl_setopt_array($curl, [
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_MAXREDIRS => 5,
+                CURLOPT_CONNECTTIMEOUT => 10,
+                CURLOPT_TIMEOUT => 30,
+                CURLOPT_FAILONERROR => true,
+                CURLOPT_PROTOCOLS => CURLPROTO_HTTP | CURLPROTO_HTTPS,
+                CURLOPT_REDIR_PROTOCOLS => CURLPROTO_HTTP | CURLPROTO_HTTPS,
+            ]);
+            $response = curl_exec($curl);
+            if ($response === false) {
+                throw new RuntimeException('YouTube API request failed: ' . curl_error($curl));
+            }
+            return $response;
+        } finally {
+            curl_close($curl);
+        }
+    }
+
     public function CntYTRssHookCheckURL($url) {
         Minz_Log::debug('YouTubeChannel2RssFeed-CntYTRssHookCheckURL: START - ' . $url);
         if (stripos($url, self::CNT_YT_FEEDURL) === false) {
@@ -117,17 +145,10 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
                 $extUrl = $this->getThirdPartyUrl();
                 if ($extUrl != ''){
                     if (preg_match('#^https?://(www\.|)youtube\.com/([\@0-9a-zA-Z_-]{1,60})#', $url, $matches) === 1) {
-                        $origAllowUrlFopen = ini_get('allow_url_fopen');
-
-                        try {
-                            Minz_Log::debug('YouTubeChannel2RssFeed-CntYTRssHookCheckURL: 3rdParty - start');
-                            ini_set("allow_url_fopen", 1);
-                            $json = file_get_contents($extUrl . '/channels?handle=' . $matches[2]);
-                            Minz_Log::debug('YouTubeChannel2RssFeed-CntYTRssHookCheckURL: 3rdParty - json=' . serialize($json));
-                        } finally {
-                            ini_set("allow_url_fopen", $origAllowUrlFopen);
-                            Minz_Log::debug('YouTubeChannel2RssFeed-CntYTRssHookCheckURL: 3rdParty - end');
-                        }
+                        Minz_Log::debug('YouTubeChannel2RssFeed-CntYTRssHookCheckURL: 3rdParty - start');
+                        $json = $this->requestApi($extUrl . '/channels?handle=' . $matches[2]);
+                        Minz_Log::debug('YouTubeChannel2RssFeed-CntYTRssHookCheckURL: 3rdParty - json=' . serialize($json));
+                        Minz_Log::debug('YouTubeChannel2RssFeed-CntYTRssHookCheckURL: 3rdParty - end');
 
                         $data = json_decode($json);
                         $id = strval($data->items[0]->id);
@@ -198,8 +219,6 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
                 // https://stackoverflow.com/questions/71192605/how-do-i-get-youtube-shorts-from-youtube-api-data-v3/71194751#71194751
                 Minz_Log::debug('YouTubeChannel2RssFeed-isShort: entry is OBJ - ID=' . $ytID);
 
-                $origAllowUrlFopen = ini_get('allow_url_fopen');
-
                 $part = 'short';
 
                 $shortDuration = $this->getShortDuration();
@@ -207,15 +226,10 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
                     $part .= ',contentDetails';
                 }
 
-                try {
-                    Minz_Log::debug('YouTubeChannel2RssFeed-isShort: fOpen - start');
-                    ini_set("allow_url_fopen", 1);
-                    $json = file_get_contents($extUrl . '/videos?part=' . $part . '&id=' . $ytID);
-                    Minz_Log::debug('YouTubeChannel2RssFeed-isShort: fOpen - data: ' . serialize($json));
-                } finally {
-                    ini_set("allow_url_fopen", $origAllowUrlFopen);
-                    Minz_Log::debug('YouTubeChannel2RssFeed-isShort: fOpen - end');
-                }
+                Minz_Log::debug('YouTubeChannel2RssFeed-isShort: API - start');
+                $json = $this->requestApi($extUrl . '/videos?part=' . $part . '&id=' . $ytID);
+                Minz_Log::debug('YouTubeChannel2RssFeed-isShort: API - data: ' . serialize($json));
+                Minz_Log::debug('YouTubeChannel2RssFeed-isShort: API - end');
 
                 $data = json_decode($json);
 
