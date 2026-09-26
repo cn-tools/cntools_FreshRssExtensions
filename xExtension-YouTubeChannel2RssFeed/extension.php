@@ -40,6 +40,7 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
                 '3rd_party_url' => rtrim(Minz_Request::paramString('3rd_party_url', ''), '/'),
                 'shorts' => Minz_Request::paramString('shorts', ''),
                 'short_duration' => Minz_Request::paramString('short_duration', 0),
+                'long_form' => Minz_Request::paramBoolean('long_form') ? '1' : '0',
             ];
 
             FreshRSS_Context::$user_conf->YouTubeChannel2RssFeed = $config;
@@ -92,6 +93,14 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
         return intval($this->getConfigValueByKeyWithDef('short_duration', 0));
     }
 
+    private function feedUrlForChannel(string $channel): string {
+        if ($this->getConfigValueByKeyWithDef('long_form', '0') === '1'
+            && preg_match('/^UC[A-Za-z0-9_-]{22}$/D', $channel) === 1) {
+            return 'https://www.youtube.com/feeds/videos.xml?playlist_id=UULF' . substr($channel, 2);
+        }
+        return 'https://www.youtube.com/feeds/videos.xml?channel_id=' . $channel;
+    }
+
     public function CntYTRssHookCheckURL($url) {
         Minz_Log::debug('YouTubeChannel2RssFeed-CntYTRssHookCheckURL: START - ' . $url);
         if (stripos($url, self::CNT_YT_FEEDURL) === false) {
@@ -101,7 +110,7 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
 
                 if (preg_match('#^https?://(www\.|)youtube\.com/channel/([0-9a-zA-Z_-]{6,36})#', $url, $matches) === 1) {
                     Minz_Log::debug('YouTubeChannel2RssFeed-CntYTRssHookCheckURL: channel=' . $matches[2]);
-                    return 'https://www.youtube.com/feeds/videos.xml?channel_id=' . $matches[2];
+                    return $this->feedUrlForChannel($matches[2]);
                 }
 
                 if (preg_match('#^https?://(www\.|)youtube\.com/user/([0-9a-zA-Z_-]{6,36})#', $url, $matches) === 1) {
@@ -132,7 +141,7 @@ class YouTubeChannel2RssFeedExtension extends Minz_Extension {
                         $data = json_decode($json);
                         $id = strval($data->items[0]->id);
                         Minz_Log::debug('YouTubeChannel2RssFeed-CntYTRssHookCheckURL: 3rdParty=' . $matches[2]);
-                        return 'https://www.youtube.com/feeds/videos.xml?channel_id=' . $id;
+                        return $this->feedUrlForChannel($id);
                     }
                 }
             } catch (Exception $e) {

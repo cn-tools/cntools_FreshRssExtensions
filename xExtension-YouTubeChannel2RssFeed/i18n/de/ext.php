@@ -14,6 +14,10 @@ return array(
         'install' => array(
             'bad_freshrss' => 'Für "YouTubeChannel2RssFeed" ist mindestens die FreshRSS-Version `%s` erforderlich. (Sie verwenden die FreshRSS-Version `%s`)',
         ),
+        'long_form' => array(
+            'label' => 'Playlist für längere Kanalvideos',
+            'hint' => 'Für Kanal-URLs und aufgelöste Handles die UULF-Playlist statt des Standard-Kanalfeeds verwenden. Diese YouTube-Playlist ist nicht dokumentiert und kann sich ändern; bestehende Abonnements bleiben unverändert.',
+        ),
         'shorts' => array(
             'duration' => array(
                 'label' => 'Dauer in Sekunden',

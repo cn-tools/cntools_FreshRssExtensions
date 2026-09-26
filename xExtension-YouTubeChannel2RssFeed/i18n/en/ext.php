@@ -14,6 +14,10 @@ return array(
         'install' => array(
             'bad_freshrss' => '`YouTubeChannel2RssFeed`required at least FreshRSS version `%s`. (You use FreshRSS version `%s`)',
         ),
+        'long_form' => array(
+            'label' => 'Long-form uploads playlist',
+            'hint' => 'Use the UULF playlist instead of the standard channel feed for channel URLs and resolved handles. This YouTube playlist is undocumented and may change; only newly added feeds are affected.',
+        ),
         'shorts' => array(
             'duration' => array(
                 'label' => 'Duration in seconds',
