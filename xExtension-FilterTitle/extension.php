@@ -33,7 +33,7 @@ class FilterTitleExtension extends Minz_Extension {
                             return $entry;
                         } else {
                             // add entry into database not allowed
-                            Minz_Log::warning(_t('ext.filter_title.warning.not_allowed_keyword', $entry->title()));
+                            Minz_Log::warning(_t('ext.filter_title.warning.not_allowed_msg', $entry->title()));
                             return null;
                         }
                     }
@@ -51,7 +51,7 @@ class FilterTitleExtension extends Minz_Extension {
                             return $entry;
                         } else {
                             // add entry into database not allowed
-                            Minz_Log::warning(_t('ext.filter_title.warning.not_allowed_keyword', $entry->title()));
+                            Minz_Log::warning(_t('ext.filter_title.warning.not_allowed_msg', $entry->title()));
                             return null;
                         }
                     }
