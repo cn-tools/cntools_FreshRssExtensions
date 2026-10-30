@@ -3,10 +3,11 @@
 return array(
     'filter_title' => array(
         'blacklist' => 'Blacklist',
-        'keywords_desc' => 'Each line is checked individually. In addition to normal texts, RegEx expressions can also be defined. These must be able to be evaluated using the PHP function preg_match.',
+        'keywords_desc' => 'One rule per line. Capitalisation matters for plain text. Use /Promo Codes?/i to ignore capitalisation.',
+        'invalid_pattern' => '%s, line %d: invalid regular expression. Fix this rule and save again. Your saved settings are unchanged.',
         'mark_as_read' => 'Mark as read',
-        'mark_as_read_hint' => 'If this checkbox is checked, the unauthorized entries will still be entered into the database but will be marked as read',
-        'priority_hint' => 'Note that the blacklist has higher priority than the whitelist!',
+        'mark_as_read_hint' => 'Import blocked articles as read instead of skipping them.',
+        'priority_hint' => 'Blacklist rules override whitelist rules.',
         'warning' => [
             'not_allowed_msg' => '"%s" is a banned keyword. Contact your administrator for more information.',
         ],
