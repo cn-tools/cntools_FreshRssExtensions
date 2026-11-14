@@ -1,8 +1,8 @@
 {
 	"name": "FilterTitle",
 	"author": "CNTools | Clemens Neubauer",
-	"description": "Filter feed entries by filter keywords in title",
-	"version": "0.1.0",
+	"description": "Filter feed entries by title, authors, link, tags, thumbnail URL or GUID",
+	"version": "0.2.0",
 	"entrypoint": "FilterTitle",
 	"type": "system"
 }

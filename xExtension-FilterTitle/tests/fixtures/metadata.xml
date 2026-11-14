@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/">
+    <channel>
+        <title>Local metadata fixture</title>
+        <link>https://example.test/</link>
+        <description>Offline import fixture</description>
+        <item>
+            <title>Ordinary reporting</title>
+            <link>https://example.test/report?a=1&amp;b=2</link>
+            <guid isPermaLink="false">fixture:metadata:1</guid>
+            <dc:creator><![CDATA[Sponsored Post]]></dc:creator>
+            <dc:subject><![CDATA[Coupons]]></dc:subject>
+            <category>Technology</category>
+            <description><![CDATA[<p>A feed summary &amp; details.</p>]]></description>
+            <media:thumbnail url="https://example.test/coupon-thumbnail.jpg?a=1&amp;b=2" />
+        </item>
+    </channel>
+</rss>
