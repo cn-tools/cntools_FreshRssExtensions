@@ -118,6 +118,7 @@ class FilterTitleExtension extends Minz_Extension {
                             $entry->_isRead(true);
                             return $entry;
                         }
+                        Minz_Log::warning(_t('ext.filter_title.warning.not_allowed_msg', $entry->title()));
                         return null;
                     }
                 }

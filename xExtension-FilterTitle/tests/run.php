@@ -216,6 +216,31 @@ foreach (['', '1'] as $action) {
 }
 echo "PASS author rules save, reload, render and apply both shared actions through the hook\n";
 
+$tagRule = array_replace($authorRule, ['field' => 'tags', 'value' => 'Coupons']);
+saveRules([$authorRule, $tagRule]);
+$logPath = USERS_PATH . '/_/' . LOG_FILENAME;
+foreach ([
+    new FreshRSS_Entry(title: 'Author-filtered article', authors: 'Sponsored Post'),
+    new FreshRSS_Entry(title: 'Tag-filtered article', tags: ['Coupons']),
+    new FreshRSS_Entry(title: 'Article matching both rules', authors: 'Sponsored Post', tags: ['Coupons']),
+] as $entry) {
+    $beforeLog = file_get_contents($logPath);
+    check(filterEntry($entry) === null, 'A metadata blacklist match rejects the article');
+    $newLog = substr(file_get_contents($logPath), strlen($beforeLog));
+    check(substr_count($newLog, '"' . $entry->title() . '"') === 1, 'Log the rejected article title exactly once');
+    check(!str_contains($newLog, 'ext.filter_title.'), 'Use the existing translated rejection message');
+}
+$beforeLog = file_get_contents($logPath);
+$ordinary = new FreshRSS_Entry(title: 'Unmatched article');
+check(filterEntry($ordinary) === $ordinary, 'An unmatched article still passes');
+check(file_get_contents($logPath) === $beforeLog, 'Do not log rejection for an unmatched article');
+saveRules([$authorRule, $tagRule], ['mark_as_read' => '1']);
+$beforeLog = file_get_contents($logPath);
+$read = new FreshRSS_Entry(title: 'Imported as read', authors: 'Sponsored Post');
+check(filterEntry($read) === $read && $read->isRead(), 'Mark-as-read mode still imports matching articles');
+check(file_get_contents($logPath) === $beforeLog, 'Like legacy rules, do not log rejection for imported articles');
+echo "PASS metadata rejections log article titles once without changing allowed or mark-as-read behaviour\n";
+
 foreach ([
     ['contains', 'POST', 'Sponsored Post', true],
     ['equals', 'ÉCOLE STRASSE', 'École Straße', true],
