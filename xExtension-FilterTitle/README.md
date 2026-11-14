@@ -28,7 +28,7 @@ For example, keep promotional title rules on separate lines rather than combinin
 
 Plain text matches are case-sensitive. The `i` modifier makes regex matches case-insensitive. Blank lines and surrounding spaces are ignored.
 
-Rules beginning with `/` are checked before saving. If a rule is invalid, the form shows its list and line number, keeps your input for correction, and leaves all saved settings unchanged. Other PHP regex delimiters remain supported for compatibility, but are not checked on save. Use `/` delimiters for validation.
+Use `/` delimiters for regex rules so they can be checked before saving.
 
 Blocked entries are not added to the database by default. Choose **Mark as read** to import them as read instead. Rules apply to new entries during feed refresh; changing them does not remove existing articles.
 
@@ -58,15 +58,11 @@ Any matching additional rule blocks the article. The title whitelist cannot over
 
 Content matching is not supported. Filtering does not parse article bodies or fetch extra content.
 
-### Save and runtime errors
+### Saving rules
 
-A failed save keeps every previous setting and redisplays your input for correction. An older settings form cannot erase additional rules. To remove them all, remove every row in the current editor and save.
+If a rule is invalid, fix it and save again. Your saved settings stay unchanged.
 
-A malformed saved rule list is skipped as a whole, with a settings-page error and a log warning. Title rules remain active.
-
-New regex rules use local PCRE limits of **100,000 match operations** and **1,000 depth levels**; lower PHP limits still apply, and supplied regex directives cannot raise these caps. These were checked on PHP 8.4.27 / PCRE 10.46 using pathological backtracking and recursive patterns. They are execution limits, not a wall-clock timeout, and do not change process-wide settings or legacy title matching. A runtime regex failure does not block an article by itself: filtering continues with other rules and the title lists. Logs identify the row, field and error, never the full field value, with repeated errors suppressed for that extension instance.
-
-Before deploying, back up the installed extension and its system configuration and check for local differences. Start any live smoke test with a small set of known matches and non-matches; switching **Mark as read** also changes the action for existing title rules. No example rules are installed automatically. Rollback restores both code and configuration.
+To remove all additional rules, remove every row and save.
 
 ## Tests
 
